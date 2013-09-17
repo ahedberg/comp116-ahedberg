@@ -38,11 +38,11 @@ set1.pcap
 
 set2.pcap
 =========
-10. There are 74566 packets in this set.
+10\. There are 74566 packets in this set.
 
-11. There are 9 plaintext username-password pairs in this packet set.
+11\. There are 9 plaintext username-password pairs in this packet set.
 
-12. Username-password pairs were discovered by filtering the packet set by
+12\. Username-password pairs were discovered by filtering the packet set by
     insecure protocols using Wireshark. FTP, Telnet, Rlogin, rsh, POP, SMTP, 
     SNMP, NFS, and IMAP were searched. For each protocol, each TCP stream was 
     viewed to look for usernames and passwords. Streams were then filtered out
@@ -52,7 +52,7 @@ set2.pcap
     Domain names were found using nslookup most of the time. [Whois](http://whois.net) was used to find the domain name for the Telnet pairs. etterlog was used
     to verify domain names mail.cutaway.it and pop3.metu.edu.tr.
 
-13. Plaintext username-password pairs found:
+13\. Plaintext username-password pairs found:
 
 <table>
   <tr>
@@ -146,27 +146,27 @@ set2.pcap
   </tr>
 </table>
 
-14. Four of the username-password pairs were valid:
+14\. Four of the username-password pairs were valid:
     * cisco / 185 buburuza
     * mbergeson@hjnews.com / mb123on
     * brewer / 1qazxsw209simona12
     * dmartini@cutaway.it / se1lasa
 
-15. The username-password pairs were verified by looking for responses from
+15\. The username-password pairs were verified by looking for responses from
     the server indicating a successful logon. In the case of cisco /
     185 buburuza pair, the lack of a failed logon response was interpreted as a
     successful logon.
 
-16. It would be an invasion of the user's privacy to log into websites or
+16\. It would be an invasion of the user's privacy to log into websites or
     services using their usernames and passwords. There would probably be some
     violation(s) of terms-of-use agreements with the websites or services if
     the login information was used to gain access, as well.
 
-17. The owners of these username-password pairs should start using more secure
+17\. The owners of these username-password pairs should start using more secure
     methods of connection. SSH could be used instead of Telnet. POP3 and IMAP
     can be secured using SSL.
 
-18. The IP addresses with their associated domain names are listed below. The
+18\. The IP addresses with their associated domain names are listed below. The
     Address Resolution statistics option in Wireshark generated this data. I
     apologize for the ugly formatting.
 
@@ -505,7 +505,7 @@ set2.pcap
 213.71.30.150				www.ospserver.net  
 204.154.94.81				www.evernote.com  
 
-19. Protocols used, with percentage of packets:
+19\. Protocols used, with percentage of packets:
     * TCP - 96.50%
         * FTP and FTP-DATA - 11.59%
         * HTTP - 8.78%
@@ -528,4 +528,4 @@ set2.pcap
     The protocols in this packet set were listed using the Protocol Hierarchy
     Statistics feature of Wireshark. 
 
-20. TODO what else did I find
+20\. TODO what else did I find
