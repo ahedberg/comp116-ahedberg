@@ -525,4 +525,10 @@ the combination of FTP and FTP-DATA made up 11.59% of packets, and HTTP made up
 The protocols in this packet set were listed using the Protocol Hierarchy 
 Statistics feature of Wireshark. 
 
-20\. TODO what else did I find
+20\. Some other interesting things in this packet set include:
+* Images from Facebook in PNG format (stored on fbcdn.net)
+* A text/JavaScript file stored on np.lexity.com
+* Images stored on GitHub in PNG format
+* Images, HTML files, CSS files, and other text/JavaScript files stored in a
+bunch of places
+* PDF files transmitted over FTP
