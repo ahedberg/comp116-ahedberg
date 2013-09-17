@@ -47,10 +47,7 @@ set2.pcap
     SNMP, NFS, and IMAP were searched. For each protocol, each TCP stream was 
     viewed to look for usernames and passwords. Streams were then filtered out
     of view so that all packets for that protocol would eventually be 
-    inspected.
-
-    Domain names were found using nslookup most of the time. [Whois](http://whois.net) was used to find the domain name for the Telnet pairs. etterlog was used
-    to verify domain names mail.cutaway.it and pop3.metu.edu.tr.
+    inspected. Domain names were found using nslookup most of the time. [Whois](http://whois.net) was used to find the domain name for the Telnet pairs. etterlog was used to verify domain names mail.cutaway.it and pop3.metu.edu.tr.
 
 13\. Plaintext username-password pairs found:
 
@@ -147,10 +144,10 @@ set2.pcap
 </table>
 
 14\. Four of the username-password pairs were valid:
-    * cisco / 185 buburuza
-    * mbergeson@hjnews.com / mb123on
-    * brewer / 1qazxsw209simona12
-    * dmartini@cutaway.it / se1lasa
+* cisco / 185 buburuza
+* mbergeson@hjnews.com / mb123on
+* brewer / 1qazxsw209simona12
+* dmartini@cutaway.it / se1lasa
 
 15\. The username-password pairs were verified by looking for responses from
     the server indicating a successful logon. In the case of cisco /
@@ -170,7 +167,7 @@ set2.pcap
     Address Resolution statistics option in Wireshark generated this data. I
     apologize for the ugly formatting.
 
-    74.125.239.7 talkgadget.l.google.com  
+74.125.239.7 talkgadget.l.google.com  
 74.125.239.4			        talkgadget.l.google.com  
 74.125.239.6				talkgadget.l.google.com  
 74.125.239.0				talkgadget.l.google.com  
@@ -506,26 +503,26 @@ set2.pcap
 204.154.94.81				www.evernote.com  
 
 19\. Protocols used, with percentage of packets:
-    * TCP - 96.50%
-        * FTP and FTP-DATA - 11.59%
-        * HTTP - 8.78%
-        * Data - 7.58%
-        * SSL - 7.39%
-        * Telnet - 0.09%
-        * POP - 0.04%
-        * SSH - 0.16%
-        * IMAP - 0.02%
-        * XMPP - 0.01%
-    * UDP - 1.63%
-    * GRE (Generic Routing Encapsulation) - 1.28%
-    * ICM (Internet Control Message Protocol) - 0.47%
-    * ARP - 0.12%
+* TCP - 96.50%
+    * FTP and FTP-DATA - 11.59%
+    * HTTP - 8.78%
+    * Data - 7.58%
+    * SSL - 7.39%
+    * Telnet - 0.09%
+    * POP - 0.04%
+    * SSH - 0.16%
+    * IMAP - 0.02%
+    * XMPP - 0.01%
+* UDP - 1.63%
+* GRE (Generic Routing Encapsulation) - 1.28%
+* ICM (Internet Control Message Protocol) - 0.47%
+* ARP - 0.12%
 
-    Broadly speaking, TCP was the most commonly used protocol. More
-    specifically, the combination of FTP and FTP-DATA made up 11.59% of
-    packets, and HTTP made up 8.78% of packets.
+Broadly speaking, TCP was the most commonly used protocol. More specifically, 
+the combination of FTP and FTP-DATA made up 11.59% of packets, and HTTP made up 
+8.78% of packets.
 
-    The protocols in this packet set were listed using the Protocol Hierarchy
-    Statistics feature of Wireshark. 
+The protocols in this packet set were listed using the Protocol Hierarchy 
+Statistics feature of Wireshark. 
 
 20\. TODO what else did I find
