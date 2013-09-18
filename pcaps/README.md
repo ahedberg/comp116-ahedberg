@@ -54,8 +54,8 @@ Comp 116 Assignment 1: Packet Sleuth
     inspected. Domain names were found using nslookup, 
     [Whois](http://whois.net), and etterlog.
 
-13. The plaintext username-password pairs are given [in a table at the bottom
-    of the file](#table). The location change is to preserve numbering of
+13. The plaintext username-password pairs are given in a table at the bottom
+    of the file. The location change is to preserve numbering of
     subsequent questions.
 
 14. Four of the username-password pairs were valid: {#question14}
@@ -451,8 +451,7 @@ Comp 116 Assignment 1: Packet Sleuth
       a bunch of places
     * PDF files transmitted over FTP
 
-### Table for question 13 {#table}
-[Back to answers](#question14)
+### Table for question 13
 <table>
   <tr>
     <th>Username</th>
