@@ -58,7 +58,7 @@ Comp 116 Assignment 1: Packet Sleuth
     of the file. The location change is to preserve numbering of
     subsequent questions.
 
-14. Four of the username-password pairs were valid: {#question14}
+14. Four of the username-password pairs were valid:
     * cisco / 185 buburuza
     * mbergeson@hjnews.com / mb123on
     * brewer / 1qazxsw209simona12
