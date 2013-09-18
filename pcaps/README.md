@@ -4,9 +4,11 @@ Ashley Hedberg
 Comp 116 Assignment 1: Packet Sleuth  
 9/17/2013 11:59 pm
 
-set1.pcap
-=========
-1. There are 276 packets in this set.
+
+
+1. ## Set 1 ##
+
+   There are 276 packets in this set.
 
 2. FTP (file transfer protocol) was used to transfer these files from the PC to
    the server.
@@ -36,20 +38,23 @@ set1.pcap
 
 
 
-set2.pcap
-=========
-10\. There are 74566 packets in this set.
+10. ## Set 2 ##
 
-11\. There are 9 plaintext username-password pairs in this packet set.
+    There are 74566 packets in this set.
 
-12\. Username-password pairs were discovered by filtering the packet set by
+11. There are 9 plaintext username-password pairs in this packet set.
+
+12. Username-password pairs were discovered by filtering the packet set by
     insecure protocols using Wireshark. FTP, Telnet, Rlogin, rsh, POP, SMTP, 
-    SNMP, NFS, and IMAP were searched. For each protocol, each TCP stream was 
-    viewed to look for usernames and passwords. Streams were then filtered out
+    SNMP, NFS, and IMAP were searched. (Source: [Nilesh Kumar, Insecure protocols](http://nileshkumar83.blogspot.com/2011/04/insecure-protocols.html))
+    
+    For each protocol, each TCP stream was investigated using "Follow TCP 
+    stream" to look for usernames and passwords. Streams were then filtered out
     of view so that all packets for that protocol would eventually be 
-    inspected. Domain names were found using nslookup most of the time. [Whois](http://whois.net) was used to find the domain name for the Telnet pairs. etterlog was used to verify domain names mail.cutaway.it and pop3.metu.edu.tr.
+    inspected. Domain names were found using nslookup, 
+    [Whois](http://whois.net), and etterlog.
 
-13\. Plaintext username-password pairs found:
+13. Plaintext username-password pairs found:
 
 <table>
   <tr>
@@ -143,31 +148,34 @@ set2.pcap
   </tr>
 </table>
 
-14\. Four of the username-password pairs were valid:
-* cisco / 185 buburuza
-* mbergeson@hjnews.com / mb123on
-* brewer / 1qazxsw209simona12
-* dmartini@cutaway.it / se1lasa
+14. Four of the username-password pairs were valid:
+    * cisco / 185 buburuza
+    * mbergeson@hjnews.com / mb123on
+    * brewer / 1qazxsw209simona12
+    * dmartini@cutaway.it / se1lasa
 
-15\. The username-password pairs were verified by looking for responses from
-    the server indicating a successful logon. In the case of cisco /
-    185 buburuza pair, the lack of a failed logon response was interpreted as a
-    successful logon.
+15. The username-password pairs were verified by looking for responses from
+    the server indicating a successful logon. These responses included messages
+    such as "Login successful" or "Access granted." In the case of the cisco /
+    185 buburuza pair, the lack of a failed logon response from the server was 
+    interpreted as a successful logon.
 
-16\. It would be an invasion of the user's privacy to log into websites or
+16. It would be an invasion of the user's privacy to log into websites or
     services using their usernames and passwords. There would probably be some
     violation(s) of terms-of-use agreements with the websites or services if
     the login information was used to gain access, as well.
 
-17\. The owners of these username-password pairs should start using more secure
+    Most important reason not to try to gain access to these accounts: 
+    it's illegal.
+
+17. The owners of these username-password pairs should start using more secure
     methods of connection. SSH could be used instead of Telnet. POP3 and IMAP
     can be secured using SSL.
 
-18\. The IP addresses with their associated domain names are listed below. The
-    Address Resolution statistics option in Wireshark generated this data. I
-    apologize for the ugly formatting.
+18. The IP addresses with their associated domain names are listed below. The
+    Address Resolution statistics option in Wireshark generated this data.
 
-74.125.239.7 talkgadget.l.google.com  
+    74.125.239.7 talkgadget.l.google.com  
 74.125.239.4			        talkgadget.l.google.com  
 74.125.239.6				talkgadget.l.google.com  
 74.125.239.0				talkgadget.l.google.com  
@@ -502,33 +510,34 @@ set2.pcap
 213.71.30.150				www.ospserver.net  
 204.154.94.81				www.evernote.com  
 
-19\. Protocols used, with percentage of packets:
-* TCP - 96.50%
-    * FTP and FTP-DATA - 11.59%
-    * HTTP - 8.78%
-    * Data - 7.58%
-    * SSL - 7.39%
-    * Telnet - 0.09%
-    * POP - 0.04%
-    * SSH - 0.16%
-    * IMAP - 0.02%
-    * XMPP - 0.01%
-* UDP - 1.63%
-* GRE (Generic Routing Encapsulation) - 1.28%
-* ICM (Internet Control Message Protocol) - 0.47%
-* ARP - 0.12%
+19. Protocols used, with percentage of packets:
+    * TCP - 96.50%
+        * FTP and FTP-DATA - 11.59%
+        * HTTP - 8.78%
+        * Data - 7.58%
+        * SSL - 7.39%
+        * Telnet - 0.09%
+        * POP - 0.04%
+        * SSH - 0.16%
+        * IMAP - 0.02%
+        * XMPP - 0.01%
+    * UDP - 1.63%
+    * GRE (Generic Routing Encapsulation) - 1.28%
+    * ICM (Internet Control Message Protocol) - 0.47%
+    * ARP - 0.12%
 
-Broadly speaking, TCP was the most commonly used protocol. More specifically, 
-the combination of FTP and FTP-DATA made up 11.59% of packets, and HTTP made up 
-8.78% of packets.
+    TCP was the most commonly used protocol. Among TCP subcategories, the 
+    combination of FTP and FTP-DATA was the most common protocol, making up 
+    11.59% of packets. The next largest, HTTP, made up 8.78% of packets.
 
-The protocols in this packet set were listed using the Protocol Hierarchy 
-Statistics feature of Wireshark. 
+    The protocols in this packet set were listed using the Protocol Hierarchy 
+    Statistics feature of Wireshark. 
 
-20\. Some other interesting things in this packet set include:
-* Images from Facebook in PNG format (stored on fbcdn.net)
-* A text/JavaScript file stored on np.lexity.com
-* Images stored on GitHub in PNG format
-* Images, HTML files, CSS files, and other text/JavaScript files stored in a
-bunch of places
-* PDF files transmitted over FTP
+20. Some other interesting things in this packet set include:
+    * Images from Facebook in PNG format (stored on fbcdn.net)
+    * A text/JavaScript file stored on np.lexity.com
+    * Images stored on GitHub in PNG format
+    * Images, HTML files, CSS files, and other text/JavaScript files stored in 
+      a bunch of places
+    * PDF files transmitted over FTP
+
