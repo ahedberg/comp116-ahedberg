@@ -54,101 +54,11 @@ Comp 116 Assignment 1: Packet Sleuth
     inspected. Domain names were found using nslookup, 
     [Whois](http://whois.net), and etterlog.
 
-13. Plaintext username-password pairs found:
+13. The plaintext username-password pairs are given [in a table at the bottom
+    of the file](#table). The location change is to preserve numbering of
+    subsequent questions.
 
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Password</th>
-    <th>Protocol</th>
-    <th>Server IP</th>
-    <th>Domain Name</th>
-    <th>Destination Port Number</th>
-  </tr>
-  <tr>
-    <!-- invalid -->
-    <td>cisco</td>
-    <td>185 chris10</td>
-    <td>Telnet</td>
-    <td>200.60.17.1</td>
-    <td>DNS4.UNIRED.NET.PE</td>
-    <td>23</td>
-  </tr>
-  <tr>
-    <!-- invalid -->
-    <td>cisco</td>
-    <td>185 chelita</td>
-    <td>Telnet</td>
-    <td>200.60.17.1</td>
-    <td>DNS4.UNIRED.NET.PE</td>
-    <td>23</td>
-  </tr>
-  <tr>
-    <!-- invalid -->
-    <td>cisco</td>
-    <td>185 chayank</td>
-    <td>Telnet</td>
-    <td>200.60.17.1</td>
-    <td>DNS4.UNIRED.NET.PE</td>
-    <td>23</td>
-  </tr>
-  <tr>
-    <!-- invalid -->
-    <td>cisco</td>
-    <td>185 cereza</td>
-    <td>Telnet</td>
-    <td>200.60.17.1</td>
-    <td>DNS4.UNIRED.NET.PE</td>
-    <td>23</td>
-  </tr>
-  <tr>
-    <!-- not sure... -->
-    <td>cisco</td>
-    <td>185 buburuza</td>
-    <td>Telnet</td>
-    <td>200.60.17.1</td>
-    <td>DNS4.UNIRED.NET.PE</td>
-    <td>23</td>
-  </tr>
-  <tr>
-    <!-- invalid -->
-    <td>e129286</td>
-    <td>4.Ekkama</td>
-    <td>POP3</td>
-    <td>144.122.144.179</td>
-    <td>pop3.metu.edu.tr</td>
-    <td>110</td>
-  </tr>
-  <tr>
-    <!-- valid -->
-    <td>mbergeson@hjnews.com</td>
-    <td>mb123on</td>
-    <td>POP3</td>
-    <td>67.128.149.178</td>
-    <td>mail.newswest.com</td>
-    <td>110</td>
-  </tr>
-  <tr>
-    <!-- valid -->
-    <td>brewer</td>
-    <td>1qazxsw209simona12</td>
-    <td>POP3</td>
-    <td>62.173.185.22</td>
-    <td>imartini.it</td>
-    <td>110</td>
-  </tr>
-  <tr>
-    <!-- valid -->
-    <td>dmartini@cutaway.it</td>
-    <td>se1lasa</td>
-    <td>IMAP</td>
-    <td>109.168.119.166</td>
-    <td>mail.cutaway.it</td>
-    <td>143</td>
-  </tr>
-</table>
-
-14. Four of the username-password pairs were valid:
+14. {#question14} Four of the username-password pairs were valid:
     * cisco / 185 buburuza
     * mbergeson@hjnews.com / mb123on
     * brewer / 1qazxsw209simona12
@@ -540,4 +450,98 @@ Comp 116 Assignment 1: Packet Sleuth
     * Images, HTML files, CSS files, and other text/JavaScript files stored in 
       a bunch of places
     * PDF files transmitted over FTP
+
+### Table for question 13 ### {#table}
+[Back to answers](#question14)
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Password</th>
+    <th>Protocol</th>
+    <th>Server IP</th>
+    <th>Domain Name</th>
+    <th>Destination Port Number</th>
+  </tr>
+  <tr>
+    <!-- invalid -->
+    <td>cisco</td>
+    <td>185 chris10</td>
+    <td>Telnet</td>
+    <td>200.60.17.1</td>
+    <td>DNS4.UNIRED.NET.PE</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <!-- invalid -->
+    <td>cisco</td>
+    <td>185 chelita</td>
+    <td>Telnet</td>
+    <td>200.60.17.1</td>
+    <td>DNS4.UNIRED.NET.PE</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <!-- invalid -->
+    <td>cisco</td>
+    <td>185 chayank</td>
+    <td>Telnet</td>
+    <td>200.60.17.1</td>
+    <td>DNS4.UNIRED.NET.PE</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <!-- invalid -->
+    <td>cisco</td>
+    <td>185 cereza</td>
+    <td>Telnet</td>
+    <td>200.60.17.1</td>
+    <td>DNS4.UNIRED.NET.PE</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <!-- not sure... -->
+    <td>cisco</td>
+    <td>185 buburuza</td>
+    <td>Telnet</td>
+    <td>200.60.17.1</td>
+    <td>DNS4.UNIRED.NET.PE</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <!-- invalid -->
+    <td>e129286</td>
+    <td>4.Ekkama</td>
+    <td>POP3</td>
+    <td>144.122.144.179</td>
+    <td>pop3.metu.edu.tr</td>
+    <td>110</td>
+  </tr>
+  <tr>
+    <!-- valid -->
+    <td>mbergeson@hjnews.com</td>
+    <td>mb123on</td>
+    <td>POP3</td>
+    <td>67.128.149.178</td>
+    <td>mail.newswest.com</td>
+    <td>110</td>
+  </tr>
+  <tr>
+    <!-- valid -->
+    <td>brewer</td>
+    <td>1qazxsw209simona12</td>
+    <td>POP3</td>
+    <td>62.173.185.22</td>
+    <td>imartini.it</td>
+    <td>110</td>
+  </tr>
+  <tr>
+    <!-- valid -->
+    <td>dmartini@cutaway.it</td>
+    <td>se1lasa</td>
+    <td>IMAP</td>
+    <td>109.168.119.166</td>
+    <td>mail.cutaway.it</td>
+    <td>143</td>
+  </tr>
+</table>
 
