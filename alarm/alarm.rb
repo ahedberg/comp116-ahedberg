@@ -10,59 +10,43 @@ alert_num = 0
 stream.stream.each do |raw|
   packet = PacketFu::Packet.parse(packet = raw)
   
-  payload = packet.eth_header.body  # in string form when not encrypted
-
-  begin
-    # Check for nmap scans - Non-TCP packets will throw errors here
+  if (packet.kind_of? PacketFu::TCPPacket)
     flags = packet.tcp_flags
 
-    if (!(flags.urg || flags.ack || flags.psh || flags.rst || flags.syn || flags.fin))
-      # Found a NULL scan
+    # Check for NULL scans
+    if ((flags.urg == 0) && (flags.ack == 0) && (flags.psh == 0) && (flags.rst == 0) && (flags.syn == 0) && (flags.fin) == 0)
       alert_num += 1
       write_alert(alert_num, "NULL scan", packet.ip_saddr, packet.proto()[-1])
+    end
 
-    else if ((flags.urg == 1) && (flags.psh == 1) && (flags.fin == 1))
-      # Found an Xmas scan
+    # Check for Xmas tree scans
+    if ((flags.urg == 1) && (flags.psh == 1) && (flags.fin == 1))
       alert_num += 1
       write_alert(alert_num, "Xmas scan", packet.ip_saddr, packet.proto()[-1])
-
     end
     
     # Check for other nmap scans
-    if (payload.include? "nmap")
-      alert_num += 1
-      write_alert(alert_num, "Nmap scan", packet.ip_saddr, packet.proto()[-1])
-    end
-    if (payload.include? "NMAP")
-      alert_num += 1
-      write_alert(alert_num, "Nmap scan", packet.ip_saddr, packet.proto()[-1])
-    end
-    if (payload.include? "Nmap")
+    if (packet.payload.include? "Nmap")
       alert_num += 1
       write_alert(alert_num, "Nmap scan", packet.ip_saddr, packet.proto()[-1])
     end
   end
 
-  rescue NoMethodError
-  end
-
-
-  # Check for in-the-clear password leakage
-  if (payload.include? "PASS")
+  if (packet.payload.include? "PASS")
     alert_num += 1
     write_alert(alert_num, "Password leakage", packet.ip_saddr, packet.proto()[-1])
   end
 
   # Check for in-the-clear credit card number leakage
-  if (/\d{4}(\s|-)?\d{4}(\s|-)?\d{4}(\s|-)?\d{4}/.match(payload))
+  if (packet.payload.match(/\d{4}(\s|-)?\d{4}(\s|-)?\d{4}(\s|-)?\d{4}/))
     alert_num += 1
     write_alert(alert_num, "Credit card number in the clear", packet.ip_saddr, packet.proto()[-1])
   end
 
   # Check for cross-site scripting
-  if (payload.include? "<script>")
+  if (packet.payload.include? "<script>")
     alert_num += 1
     write_alert(alert_num, "XSS", packet.ip_saddr, packet.proto()[-1])
   end
-end
 
+end
