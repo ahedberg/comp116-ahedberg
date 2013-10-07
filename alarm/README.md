@@ -14,7 +14,7 @@ This program analyzes a stream of network packets for several incidents:
 5. *Credit card number leakage* - Alerts that an incident has occurred when the regular expression
     described by SANS (link below) is matched.
 6. *Basic cross-site scripting* - Alerts that an incident has occurred when the payload of a packet
-    contains the strings "<script>" and "alert". This test is highly susceptible to false positives, as 
+    contains the strings "&gt;script&lt;" and "alert". This test is highly susceptible to false positives, as 
     plenty of websites that are not vulnerable to cross-site scripting would send packets containing both
     of these strings.
 
