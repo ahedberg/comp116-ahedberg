@@ -45,8 +45,10 @@ stream.stream.each do |raw|
 
   # Check for cross-site scripting
   if (packet.payload.include? "<script>")
-    alert_num += 1
-    write_alert(alert_num, "XSS", packet.ip_saddr, packet.proto()[-1])
+    if (packet.payload.include? "alert")
+      alert_num += 1
+      write_alert(alert_num, "XSS", packet.ip_saddr, packet.proto()[-1])
+    end
   end
 
 end
