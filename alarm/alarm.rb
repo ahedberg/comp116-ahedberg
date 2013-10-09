@@ -11,26 +11,32 @@ stream.stream.each do |raw|
   packet = PacketFu::Packet.parse(packet = raw)
   protocol = "Unknown"  # for default
 
-  # determine type of packer we're dealing with
-  if (packet.kind_of? PacketFu::TCPPacket)
+  # determine type of packer we're dealing with - check general ones first
+  if (packet.kind_of? PacketFu::IPPacket)
+      protocol = "HTTP"
+  elsif (packet.kind_of? PacketFu::TCPPacket)
     flags = packet.tcp_flags
     protocol = "TCP"
-  elsif (packet.kind_of? PacketFu::IPPacket)
-      protocol = "HTTP"
   elsif (packet.kind_of? PacketFu::ARPPacket)
     protocol = "ARP"
-  elsif (packet.kind_of? PacketFu::IPv6Packet)
-    protocol = "IPv6"
-  elsif (packet.kind_of? PacketFu::HSRPPacket)
-    protocol = "HSRP"
-  elsif (packet.kind_of? PacketFu::ICMPPacket)
-    protocol = "ICMP"
-  elsif (packet.kind_of? PacketFu::LLDPPacket)
-    protocol = "LLDP"
   elsif (packet.kind_of? PacketFu::UDPPacket)
     protocol = "UDP"
   elsif (packet.kind_of? PacketFu::EthPacket)
     protocol = "Eth"
+  end
+
+  # check for more specific packet type
+  if (packet.kind_of? PacketFu::HSRPPacket)
+    protocol = "HSRP"
+    end
+  if (packet.kind_of? PacketFu::ICMPPacket)
+    protocol = "ICMP"
+  end
+  if (packet.kind_of? PacketFu::IPv6Packet)
+    protocol = "IPv6"
+  end
+  if (packet.kind_of? PacketFu::LLDPPacket)
+    protocol = "LLDP"
   end
 
   if (protocol == "TCP")
