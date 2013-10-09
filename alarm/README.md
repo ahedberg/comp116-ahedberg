@@ -27,4 +27,6 @@ IP address for Nmap scans.
 I discussed this assignment with Tyler Lubeck and with classmates on Piazza. In addition, I used the following sources:
   * [String Search in Ruby](http://ruby-doc.org/core-2.0.0/String.html#method-i-include-3F)
   * [Using Snort to Detect Credit Card Numbers](http://www.sans.org/security-resources/idfaq/snort-detect-credit-card-numbers.php)
+  * [How to set up a personal home web server](http://lifehacker.com/124212/geek-to-live--how-to-set-up-a-personal-home-web-server)
+  * [Apache Error Message: Forbidden](http://stackoverflow.com/questions/10873295/error-message-forbidden-you-dont-have-permission-to-access-on-this-server) 
 

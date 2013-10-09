@@ -48,12 +48,12 @@ stream.stream.each do |raw|
   end
 
   # Check for cross-site scripting
-  if (packet.payload.index(/<script>\s*(alert|window.location)/) != nil)
+  if (packet.payload.index("<script>window.location") != nil || packet.payload.index("<script>alert") != nil)
     alert_num += 1
     write_alert(alert_num, "XSS", packet.ip_saddr, packet.proto()[-1])
   end
 
-  if (packet.payload.index(/<script>/i) != nil && packet.payload.index(/\s*(GET|POST)/) != nil)
+  if (packet.payload.index("<script>") != nil && packet.payload.index(/\s*(GET|POST)/) != nil)
     alert_num += 1
     write_alert(alert_num, "XSS", packet.ip_addr, packet.proto()[-1])
   end
