@@ -27,9 +27,9 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
    opening the /etc/\*\_version file. On this SD card, it was named
    /etc/debian\_version.
 
-<!-- TODO look for more applications -->
 4. The following applications are installed:
    * Burpsuite - found through looking at contents of /usr/bin
+   <!-- TODO look for more applications -->
 
 5. <!-- TODO root password-->
 
@@ -44,7 +44,8 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
 9. <!-- TODO encrypted files -->
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
-the celebrity in <!-- TODO open file and figure out what's up -->
+    the celebrity in 
+   <!-- TODO open file and figure out what's up -->
 
 11. <!-- TODO weird things with files on system -->
 
