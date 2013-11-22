@@ -15,7 +15,7 @@ extracted using that passphrase. However, for file a.jpg, the file prado.jpg
 was extracted. a.jpg contained a photo of Norman Ramsey hidden inside a photo 
 of Norman Ramsey.
 
-<!-- It should be noted that this was overheard by a particular classmate 
+<!--- It should be noted that this was overheard by a particular classmate 
 *cough* Nicholas Andre *cough* who was talking a bit too loudly about his
 forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
 
@@ -30,7 +30,7 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
    opening the /etc/\*\_version file. On this SD card, it was named
    /etc/debian\_version.
 
-4. The following applications are installed. Autospy was used to browse through
+4. The following applications are installed. Autopsy was used to browse through
    the SD card's filesystem.
    * Burpsuite - found through looking at contents of /usr/bin
    * Metasploit - found in /opt folder
@@ -43,8 +43,9 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
    <!-- TODO look for more applications -->
 
 5. Yes. The root password is "toor". This was discovered by running John the
-   Ripper against the passwd and shadow files recovered using Autospy against
-   many wordlists. The ipmi\_passwords.txt wordlist cracked the password.
+   Ripper against the /etc/passwd and /etc/shadow files recovered using Autopsy 
+   against many wordlists. This process was automated using a Python script. 
+   The ipmi\_passwords.txt wordlist cracked the password.
 
 6. We do not believe that there are additional user accounts on the system. The
    /home folder contains no other user directories, which we would expect to
@@ -54,13 +55,15 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
    /root/Documents, there are tracklists and tour dates for Celine Dion, as
    well.
 
-8. The suspect tried to delete files before his arrest. Autospy revealed
+8. The suspect tried to delete files before his arrest. Autopsy revealed
    several indications of recently deleted files:
    * receipt.pdf
    * 1.jpg
    * 2.jpg
 
-9. There are encrypted files on this system. Examples:
+9. There are encrypted files on this system. While Autopsy was ingesting the 
+   SD card image, it detected several encrypted files. Examples:
+   * 
    * /usr/share/doc/fcrackzip/examples/noradi.zip - 
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
@@ -69,7 +72,6 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
     photorec on sdcard.dd to recover many image/pdf files. Browsing through
     the recovered files, receipt.pdf was recovered, which contained the email
     receipt of a purchased ticket for a Celine Dion concert.
-   <!-- TODO open file and figure out what's up -->
 
 11. <!-- TODO weird things with files on system -->
 
