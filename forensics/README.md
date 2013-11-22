@@ -38,6 +38,8 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
    * Unicorn Scan - found in /etc folder; similar to nmap
    * Tor - found in /etc folder
    * Ice Weasel - found in /etc folder; web browser
+   * TrueCrypt - found in /root/.TrueCrypt
+   * FCrackZip - found example files in /usr/share/doc/fcrackzip
    <!-- TODO look for more applications -->
 
 5. Yes. The root password is "toor". This was discovered by running John the
@@ -54,12 +56,19 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
 
 8. The suspect tried to delete files before his arrest. Autospy revealed
    several indications of recently deleted files:
+   * receipt.pdf
+   * 1.jpg
+   * 2.jpg
 
-9. <!-- TODO encrypted files -->
+9. There are encrypted files on this system. Examples:
+   * /usr/share/doc/fcrackzip/examples/noradi.zip - 
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
     Celine Dion at the Colosseum at Caesars Palace in Las Vegas, NV on July
-    28, 2012. The ticket was sold to Ming Chow.
+    28, 2012. The ticket was sold to Ming Chow. This was accomplished by using
+    photorec on sdcard.dd to recover many image/pdf files. Browsing through
+    the recovered files, receipt.pdf was recovered, which contained the email
+    receipt of a purchased ticket for a Celine Dion concert.
    <!-- TODO open file and figure out what's up -->
 
 11. <!-- TODO weird things with files on system -->
