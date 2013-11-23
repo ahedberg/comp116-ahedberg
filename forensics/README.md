@@ -21,59 +21,92 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
 
 ## Part 2
 1. This SD card has two partitions:
-   * A Win95 FAT32 partition (sectors 1 to 125001)
-   * A Linux partition (sectors 125001 to 15398839)
+  * A Win95 FAT32 partition (sectors 1 to 125001)
+  * A Linux partition (sectors 125001 to 15398839)
+[Autopsy](http://www.sleuthkit.org/autopsy/) was used to determine this.
 
-2. There does not appear to be a phone carrier involved.
+2. There does not appear to be a phone carrier involved. This seems to be the
+image of a Raspberry Pi, as the FAT32 partition contains applications designed 
+to run on that device.
 
 3. The Kali Linux 1.0 operating system is being used. This was determined by
-   opening the /etc/\*\_version file. On this SD card, it was named
-   /etc/debian\_version.
+opening the /etc/\*\_version file. On this SD card, it was named
+/etc/debian\_version.
 
 4. The following applications are installed. Autopsy was used to browse through
-   the SD card's filesystem.
-   * Burpsuite - found through looking at contents of /usr/bin
-   * Metasploit - found in /opt folder
-   * Wireshark - found in /etc folder
-   * Unicorn Scan - found in /etc folder; similar to nmap
-   * Tor - found in /etc folder
-   * Ice Weasel - found in /etc folder; web browser
-   * TrueCrypt - found in /root/.TrueCrypt
-   * FCrackZip - found example files in /usr/share/doc/fcrackzip
-   <!-- TODO look for more applications -->
+the SD card's filesystem.
+  * Windows partition:
+    * [OpenGL ES 1.x](http://www.khronos.org/opengles/1_X/), an API for 2D/3D
+    graphics on embedded systems - found evidence in $OrphanFiles folder
+  * Linux partition:
+    * Burpsuite - found through looking at contents of /usr/bin
+    * Metasploit - found in /opt folder
+    * Wireshark - found in /etc folder
+    * Unicorn Scan, similar to nmap - found in /etc folder
+    * Tor - found in /etc folder
+    * Ice Weasel, a web browser - found in /etc folder
+    * TrueCrypt - found in /root/.TrueCrypt
+    * FCrackZip - found example files in /usr/share/doc/fcrackzip
 
 5. Yes. The root password is "toor". This was discovered by running John the
-   Ripper against the /etc/passwd and /etc/shadow files recovered using Autopsy 
-   against many wordlists. This process was automated using a Python script. 
-   The ipmi\_passwords.txt wordlist cracked the password.
+Ripper against the /etc/passwd and /etc/shadow files recovered using Autopsy 
+against many wordlists. This process was automated using a Python script. The 
+ipmi\_passwords.txt wordlist cracked the password.
 
 6. We do not believe that there are additional user accounts on the system. The
-   /home folder contains no other user directories, which we would expect to
-   see.
+/home folder contains no other user directories, which we would expect to see.
 
-7. In the /root/Pictures directory, there are photos of Celine Dion. In
-   /root/Documents, there are tracklists and tour dates for Celine Dion, as
-   well.
+7. In the /root/Pictures directory, there are ten old photos of Celine Dion. In
+/root/Documents, there are two setlists and a list of upcoming tour dates for 
+Celine Dion, as well. This was determined using Autopsy.
 
-8. The suspect tried to delete files before his arrest. Autopsy revealed
-   several indications of recently deleted files:
-   * receipt.pdf
-   * 1.jpg
-   * 2.jpg
+8. The suspect tried to delete files before his arrest. Autopsy found 203,552
+deleted files on the SD card. Nearly everything on the FAT32 partition had been
+recently deleted.
 
-9. There are encrypted files on this system. While Autopsy was ingesting the 
-   SD card image, it detected several encrypted files. Examples:
-   * 
-   * /usr/share/doc/fcrackzip/examples/noradi.zip - 
+  [Photorec](http://www.cgsecurity.org/wiki/PhotoRec) was used to recover as
+many deleted files as possible from the disk image. The recovered files were
+stored in 48 different directories when run on a Windows laptop. These
+directories were added to a new library so that their contents could be viewed
+and filtered as a group. Many interesting files were discovered:
+  * 36 PDF documents, including:
+    * Man pages for curl\_easy\_strerror(), curl\_share\_cleanup(), 
+curl\_slist\_append(), curl\_easy\_escape(), curl\_global\_init\_mem(), 
+curl\_multi\_cleanup(), curl\_multi\_remove\_handle(), curl\_easy\_duphandle(),
+curl\_easy\_init(), and curl\_free().
+    * The Metasploit Pro Passive Network Discovery Quick Start Guide
+  * 65 PNG images, including:
+    * Screenshots of a Metasplot Pro project called Phishing belonging to an
+account named thao with two campaigns (Malicious PDF and USB).
+    * Screenshots of other Metasploit Pro projects belonging to msfadmin and
+tdoan.
+    * A Rapid7 Metasploit Pro report.
+    * Configuration of a Nexpose module.
+    * An illustrated picture of a character with blue hair and green goggles.
+    * A diagram dissecting the string "(((a)))" into "a".
+    * A picture of what appears to be a father and daughter on an amusement
+park ride.
+    * A logo for "Maniac: Home of the Social Engineer Tool-Kit".
+    * 
+  * 
+
+
+9. There are encrypted files on this system. While Autopsy was ingesting the SD
+card image, it detected several encrypted files. Examples:
+  * 
+  * /usr/share/doc/fcrackzip/examples/noradi.zip - 
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
-    Celine Dion at the Colosseum at Caesars Palace in Las Vegas, NV on July
-    28, 2012. The ticket was sold to Ming Chow. This was accomplished by using
-    photorec on sdcard.dd to recover many image/pdf files. Browsing through
-    the recovered files, receipt.pdf was recovered, which contained the email
-    receipt of a purchased ticket for a Celine Dion concert.
+Celine Dion at the Colosseum at Caesars Palace in Las Vegas, NV on July 28 2012.
+The ticket was sold to Ming Chow. This was accomplished by using PhotoRec
+on sdcard.dd to recover many image/pdf files. Browsing through the recovered 
+files, a PDF containing the email receipt of this purchased ticket was found.
 
-11. <!-- TODO weird things with files on system -->
+11. There are many strange things on this filesystem. Firstly, the presence of 
+[Kali Linux](http://slashdot.org/topic/bi/kali-linux-the-ultimate-
+penetration-testing-tool/) is suspicious. This operating system is designed for
+digital forensics and penetration testing, which one would not expect to see on
+a device belonging to your average celebrity stalker.
 
 12. The suspect is stalking Celine Dion.
 
