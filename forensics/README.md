@@ -47,6 +47,7 @@ the SD card's filesystem.
     * Ice Weasel, a web browser - found in /etc folder
     * TrueCrypt - found in /root/.TrueCrypt
     * FCrackZip - found example files in /usr/share/doc/fcrackzip
+<!-- TODO finish this -->
 
 5. Yes. The root password is "toor". This was discovered by running John the
 Ripper against the /etc/passwd and /etc/shadow files recovered using Autopsy 
@@ -70,31 +71,28 @@ stored in 48 different directories when run on a Windows laptop. These
 directories were added to a new library so that their contents could be viewed
 and filtered as a group. Many interesting files were discovered:
   * 36 PDF documents, including:
-    * Man pages for curl\_easy\_strerror(), curl\_share\_cleanup(), 
-    curl\_slist\_append(), curl\_easy\_escape(), curl\_global\_init\_mem(), 
-    curl\_multi\_cleanup(), curl\_multi\_remove\_handle(), 
-    curl\_easy\_duphandle(), curl\_easy\_init(), and curl\_free().
+    * The libcurl manual
+    * An email confirming a Ticketmaster order for Celine Dion tickets
+    * The TrustedSec Social-Engineer Toolkit User Manual
     * The Metasploit Pro Passive Network Discovery Quick Start Guide
   * 65 PNG images, including:
     * Screenshots of a Metasplot Pro project called Phishing belonging to an
-    account named thao with two campaigns (Malicious PDF and USB).
+    account named thao with two campaigns (Malicious PDF and USB)
     * Screenshots of other Metasploit Pro projects belonging to msfadmin and
-    tdoan.
-    * A Rapid7 Metasploit Pro report.
-    * Configuration of a Nexpose module.
-    * An illustrated picture of a character with blue hair and green goggles.
-    * A diagram dissecting the string "(((a)))" into "a".
+    tdoan
+    * A Rapid7 Metasploit Pro report
+    * Configuration of a Nexpose module
+    * An illustrated picture of a character with blue hair and green goggles
+    * A diagram dissecting the string "(((a)))" into "a"
     * A picture of what appears to be a father and daughter on an amusement
-    park ride.
-    * A logo for "Maniac: Home of the Social Engineer Tool-Kit".
-    * 
-  * 
-
+    park ride
+    * A logo for "Maniac: Home of the Social Engineer Tool-Kit"
+<!--- TODO not done here! -->
 
 9. There are encrypted files on this system. While Autopsy was ingesting the SD
 card image, it detected several encrypted files. Examples:
-  * 
   * /usr/share/doc/fcrackzip/examples/noradi.zip - 
+ <!-- TODO not done here either! -->
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
 Celine Dion at the Colosseum at Caesars Palace in Las Vegas, NV on July 28 2012.
@@ -107,6 +105,7 @@ files, a PDF containing the email receipt of this purchased ticket was found.
 penetration-testing-tool/) is suspicious. This operating system is designed for
 digital forensics and penetration testing, which one would not expect to see on
 a device belonging to your average celebrity stalker.
+<!-- TODO finish this -->
 
 12. The suspect is stalking Celine Dion.
 
