@@ -1,6 +1,8 @@
 # Assignment 5: Forensics
 
 Ashley Hedberg and Tucker Stone
+Comp 116: Intro to Computer Security
+November 24, 2013
 
 ## Part 1
 Firstly, diff was run to compare each file against the others. b.jpg and c.jpg
@@ -23,7 +25,8 @@ forensics work in 111. Seemed silly not to try it. Worked like a charm! -->
 1. This SD card has two partitions:
   * A Win95 FAT32 partition (sectors 1 to 125001)
   * A Linux partition (sectors 125001 to 15398839)
-[Autopsy](http://www.sleuthkit.org/autopsy/) was used to determine this.
+
+  [Autopsy](http://www.sleuthkit.org/autopsy/) was used to determine this.
 
 2. There does not appear to be a phone carrier involved. This seems to be the
 image of a Raspberry Pi, as the FAT32 partition contains applications designed 
@@ -39,15 +42,31 @@ the SD card's filesystem.
     * [OpenGL ES 1.x](http://www.khronos.org/opengles/1_X/), an API for 2D/3D
     graphics on embedded systems - found evidence in $OrphanFiles folder
   * Linux partition:
-    * Burpsuite - found through looking at contents of /usr/bin
-    * Metasploit - found in /opt folder
-    * Wireshark - found in /etc folder
-    * Unicorn Scan, similar to nmap - found in /etc folder
-    * Tor - found in /etc folder
-    * Ice Weasel, a web browser - found in /etc folder
+    * Burpsuite - found in /usr/bin
+    * Metasploit - found in /opt
+    * Wireshark - found in /etc
+    * [Unicornscan](http://www.unicornscan.org/) - found in /etc
+    * Tor - found in /etc
+    * [Iceweasel](https://wiki.debian.org/Iceweasel) - found in /etc
     * TrueCrypt - found in /root/.TrueCrypt
     * FCrackZip - found example files in /usr/share/doc/fcrackzip
-<!-- TODO finish this -->
+    * ImageMagick - found in /etc
+    * [ConsoleKit](http://www.freedesktop.org/wiki/Software/ConsoleKit/) - 
+    found in /etc
+    * [BeEF](http://beefproject.com/) - found in /etc
+    * John the Ripper - found in /etc
+    * [Lynis](http://www.rootkit.nl/projects/lynis.html) - found in /etc
+    * Ettercap - found in /etc
+    * [Cowsay](http://en.wikipedia.org/wiki/Cowsay) - found in /usr/games
+    * [XSSer](http://xsser.sourceforge.net/) - found in /usr/local/bin
+    * [Bluelog](http://www.digifail.com/software/bluelog.shtml) - found in
+    /usr/share
+    * [JavaSnoop](https://www.aspectsecurity.com/research/appsec_tools/
+    javasnoop/) - found in /usr/share
+    * [JBoss Autopwn](https://github.com/SpiderLabs/jboss-autopwn) - found in 
+    /usr/share 
+    * [Powersploit](https://github.com/mattifestation/PowerSploit) - found in
+    /usr/share
 
 5. Yes. The root password is "toor". This was discovered by running John the
 Ripper against the /etc/passwd and /etc/shadow files recovered using Autopsy 
@@ -75,10 +94,10 @@ and filtered as a group. Many interesting files were discovered:
     * An email confirming a Ticketmaster order for Celine Dion tickets
     * The TrustedSec Social-Engineer Toolkit User Manual
     * The Metasploit Pro Passive Network Discovery Quick Start Guide
-  * 12 JPEG images, including:
+  * 13 JPEG images, including:
     * Two of Celine Dion
     * One of Ruby on Rails consultant Jaime Iniesta
-    * Logos for Rapid7, Metasploit, Beef, 
+    * Logos for Rapid7, Metasploit, and BeEF
     * Screenshots of setting up a Metasploit scan
   * 585 PNG images, including:
     * Screenshots of a Metasplot Pro project called Phishing belonging to an
@@ -93,6 +112,20 @@ and filtered as a group. Many interesting files were discovered:
     park ride
     * A logo for "Maniac: Home of the Social Engineer Tool-Kit"
     * A screenshot indicating that Metasploit was uninstalled
+  * 26 application files, the names of which were mangled by PhotoRec
+  * Many source code files, including:
+    * 432 C files
+    * 448 H files
+    * 107 Java Class files
+    * 2,799 Java files
+    * 147 PHP files
+    * 370 Ruby files
+    * 378 shell scripts
+    * 256 Python files
+    * 2 Windows batch files
+  * Four files that Windows believed to be in Microsoft Word format. None would
+  open, but one contained the comment "This installer database contains the 
+  logic and data required to install Foobar 1.0."
 
 9. There are encrypted files on this system. TCHunt was used to search the
 Linux partition of the SD card for TrueCrypt files. The source was downloaded
@@ -105,15 +138,16 @@ The ticket was sold to Ming Chow. This was accomplished by using PhotoRec
 on sdcard.dd to recover many image/pdf files. Browsing through the recovered 
 files, a PDF containing the email receipt of this purchased ticket was found.
 
-11. There are many strange things on this filesystem. Firstly, the presence of 
-[Kali Linux](http://slashdot.org/topic/bi/kali-linux-the-ultimate-
-penetration-testing-tool/) is suspicious. This operating system is designed for
+11. There are many strange things on this filesystem. The presence of [Kali
+Linux](http://slashdot.org/topic/bi/kali-linux-the-ultimate-penetration-
+testing-tool/) is suspicious. This operating system is designed for
 digital forensics and penetration testing, which one would not expect to see on
-a device belonging to your average celebrity stalker. The screenshots and
-reports of Metasploit scans also do not fit the profile of a celebrity stalker.
-
-  There are 44,166 images, 74 videos, and 157 audio files on the filesystem, 
-according to the views in Autopsy. There are also 19,810 archive files.
+a device belonging to your average celebrity stalker. This OS comes preloaded
+with many forensic and penetration testing tools that a typical celebrity
+stalker would not need, so something fishy seems to be going on. The 
+screenshots and reports of Metasploit scans only add to this weirdness. It
+seems likely that the suspect is using this device for more than celebrity
+stalking.
 
 12. The suspect is stalking Celine Dion.
 
