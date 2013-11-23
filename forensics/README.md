@@ -71,21 +71,21 @@ directories were added to a new library so that their contents could be viewed
 and filtered as a group. Many interesting files were discovered:
   * 36 PDF documents, including:
     * Man pages for curl\_easy\_strerror(), curl\_share\_cleanup(), 
-curl\_slist\_append(), curl\_easy\_escape(), curl\_global\_init\_mem(), 
-curl\_multi\_cleanup(), curl\_multi\_remove\_handle(), curl\_easy\_duphandle(),
-curl\_easy\_init(), and curl\_free().
+    curl\_slist\_append(), curl\_easy\_escape(), curl\_global\_init\_mem(), 
+    curl\_multi\_cleanup(), curl\_multi\_remove\_handle(), 
+    curl\_easy\_duphandle(), curl\_easy\_init(), and curl\_free().
     * The Metasploit Pro Passive Network Discovery Quick Start Guide
   * 65 PNG images, including:
     * Screenshots of a Metasplot Pro project called Phishing belonging to an
-account named thao with two campaigns (Malicious PDF and USB).
+    account named thao with two campaigns (Malicious PDF and USB).
     * Screenshots of other Metasploit Pro projects belonging to msfadmin and
-tdoan.
+    tdoan.
     * A Rapid7 Metasploit Pro report.
     * Configuration of a Nexpose module.
     * An illustrated picture of a character with blue hair and green goggles.
     * A diagram dissecting the string "(((a)))" into "a".
     * A picture of what appears to be a father and daughter on an amusement
-park ride.
+    park ride.
     * A logo for "Maniac: Home of the Social Engineer Tool-Kit".
     * 
   * 
