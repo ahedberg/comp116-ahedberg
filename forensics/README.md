@@ -1,8 +1,8 @@
 # Assignment 5: Forensics
 
-Ashley Hedberg and Tucker Stone
-Comp 116: Intro to Computer Security
-November 24, 2013
+Ashley Hedberg and Tucker Stone  
+Comp 116: Intro to Computer Security  
+November 24, 2013  
 
 ## Part 1
 Firstly, diff was run to compare each file against the others. b.jpg and c.jpg
