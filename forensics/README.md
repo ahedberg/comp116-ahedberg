@@ -75,7 +75,12 @@ and filtered as a group. Many interesting files were discovered:
     * An email confirming a Ticketmaster order for Celine Dion tickets
     * The TrustedSec Social-Engineer Toolkit User Manual
     * The Metasploit Pro Passive Network Discovery Quick Start Guide
-  * 65 PNG images, including:
+  * 12 JPEG images, including:
+    * Two of Celine Dion
+    * One of Ruby on Rails consultant Jaime Iniesta
+    * Logos for Rapid7, Metasploit, Beef, 
+    * Screenshots of setting up a Metasploit scan
+  * 585 PNG images, including:
     * Screenshots of a Metasplot Pro project called Phishing belonging to an
     account named thao with two campaigns (Malicious PDF and USB)
     * Screenshots of other Metasploit Pro projects belonging to msfadmin and
