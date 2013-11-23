@@ -92,6 +92,7 @@ and filtered as a group. Many interesting files were discovered:
     * A picture of what appears to be a father and daughter on an amusement
     park ride
     * A logo for "Maniac: Home of the Social Engineer Tool-Kit"
+    * A screenshot indicating that Metasploit was uninstalled
 <!--- TODO not done here! -->
 
 9. There are encrypted files on this system. While Autopsy was ingesting the SD
