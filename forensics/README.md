@@ -93,12 +93,11 @@ and filtered as a group. Many interesting files were discovered:
     park ride
     * A logo for "Maniac: Home of the Social Engineer Tool-Kit"
     * A screenshot indicating that Metasploit was uninstalled
-<!--- TODO not done here! -->
 
-9. There are encrypted files on this system. While Autopsy was ingesting the SD
-card image, it detected several encrypted files. Examples:
-  * /usr/share/doc/fcrackzip/examples/noradi.zip - 
- <!-- TODO not done here either! -->
+9. There are encrypted files on this system. TCHunt was used to search the
+Linux partition of the SD card for TrueCrypt files. The source was downloaded
+and compiled for Linux, and the Linux partition of the card was mounted so that
+it could be searched. /root/.Dropbox.zip was determined to be a suspect file.
 
 10. Yes. According to the file receipt.pdf in /root, the suspect went to see
 Celine Dion at the Colosseum at Caesars Palace in Las Vegas, NV on July 28 2012.
@@ -110,8 +109,11 @@ files, a PDF containing the email receipt of this purchased ticket was found.
 [Kali Linux](http://slashdot.org/topic/bi/kali-linux-the-ultimate-
 penetration-testing-tool/) is suspicious. This operating system is designed for
 digital forensics and penetration testing, which one would not expect to see on
-a device belonging to your average celebrity stalker.
-<!-- TODO finish this -->
+a device belonging to your average celebrity stalker. The screenshots and
+reports of Metasploit scans also do not fit the profile of a celebrity stalker.
+
+  There are 44,166 images, 74 videos, and 157 audio files on the filesystem, 
+according to the views in Autopsy. There are also 19,810 archive files.
 
 12. The suspect is stalking Celine Dion.
 
