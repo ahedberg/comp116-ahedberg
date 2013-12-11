@@ -1,6 +1,7 @@
 \documentclass[pdftex,letterpaper,titlepage,11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+\usepackage{array}
 
 \hypersetup{
   colorlinks=false,
@@ -19,6 +20,47 @@
   \end{abstract}
 
   \section{Introduction}
+    \subsection{Browser Overview}
+    The following table summarizes the web browsers that will be considered in
+    this paper. The features that a particular web browser's private mode is
+    believed to have comes from the developers of the browser. Note that all
+    browsers run on both Windows and Linux, with the exception of Internet
+    Explorer, which runs only on Windows.\cite{verdi13}\cite{google13}
+    \cite{ie13}
+
+    \begin{center}
+      \begin{tabular}{|m{'5cm'}|c|c|c|}
+        \hline
+        Property & Mozilla Firefox & Google Chrome & Internet Explorer \\
+        \hline
+        Browser history & X & X & X \\
+        \hline
+        Form data & X &  & X \\
+        \hline
+        Search bar data & X &  & X \\
+        \hline
+        Passwords & X &  & X \\
+        \hline
+        Downloads & X & X &  \\
+        \hline
+        Cookies & X & X & X \\
+        \hline
+        Cached files & X &  & X \\
+        \hline
+        Simulataneous sessions with different privacy settings & X & X & X \\
+        \hline
+        Hides activity from ISP &  &  &  \\
+        \hline
+        Hides activity from websites &  &  &  \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+  This paper also discusses the Tor browser. Unlike Firefox, Chrome, and
+  Internet Explorer, the Tor browser connects users to the internet using the
+  Tor network. This does much more to preserve browsing anonymity than the
+  browsers listed above. TODO finish this\ldots lazy. 
+
   Most modern web browsers offer some sort of private browsing mode. This is
   supposed to allow users to view web content without other users of the same
   computer being able to determine what websites were visited. What is kept
@@ -65,16 +107,19 @@
     \bibitem{verdi13}
       Verdi, Michael et al. ``Private Browsing.'' \emph{Mozilla Support}. 
       Mozilla Foundation, 29 Mar. 2013. Web. 10 Dec. 2013. 
-      $<$\url{https://support.mozilla.org/en-US/kb/private-browsing-browse-web-
+      $<$\url{http://support.mozilla.org/en-US/kb/private-browsing-browse-web-
       without-saving-info}$>$.
     \bibitem{google13}
       ``Chrome Browser.'' \emph{Chrome}. Google, 18 Nov. 2013. Web. 10 Dec. 
-      2013. $<$\url{https://www.google.com/intl/en/chrome/browser/
+      2013. $<$\url{http://www.google.com/intl/en/chrome/browser/
       features.html#privacy}$>$.
     \bibitem{ie13}
       ``InPrivate Browsing.'' \emph{Microsoft Windows}. Microsoft, 10 Dec. 
       2013. Web. 10 Dec. 2013. $<$\url{http://windows.microsoft.com/en-us/
       internet-explorer/products/ie-9/features/in-private}$>$.
+    \bibitem{tor13}
+      ``Tor Project: Overview.'' \emph{Tor}. Tor, 7 Dec. 2013. Web. 10 Dec. 
+      2013. $<$\url{http://www.torproject.org/about/overview.html.en}$>$. 
 
   \end{thebibliography}
 
