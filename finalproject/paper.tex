@@ -1,13 +1,16 @@
-\documentclass[pdftex,letterpaper,11pt]{article}
+\documentclass[pdftex,letterpaper,12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+\usepackage[doublespacing]{setspace}
 
 \hypersetup{
   colorlinks=false,
   pdfborder={0 0 0}
 }
+\setlength\parindent{0.5in}
 
 \begin{document}
+  \singlespacing
   \title{The Privacy of Private Browsing}
   \author{Ashley Hedberg\thanks{\emph{Mentor:} Ming Chow, Tufts University} \\
   \href{mailto:ashley.hedberg@tufts.edu}{ashley.hedberg@tufts.edu}}
@@ -15,9 +18,25 @@
   \maketitle
   
   \begin{abstract}
-  %write this
+  Most modern web browsers have a ``private browsing'' mode that supposedly 
+  allows a user to surf the internet without leaving any traces of his or her
+  activity on his or her machine. However, the notion of ``private browsing'' 
+  offers users a false sense of security, as browsing information is often left
+  behind when a private browsing session terminates. Several researchers have 
+  already demonstrated methods of detecting this information. These include the
+  analysis of virtual and browser memory and the pagefile on Windows machines.
+  The existence of private browsing artifacts on a user’s machine raises many 
+  questions: how much privacy do web browser developers actually aim to provide
+  with ``private browsing'' modes? Are these goals accurately conveyed to the 
+  end user? And, if the user’s browsing session can be reconstructed from these
+  artifacts, how might this be exploited by digital forensics professionals? 
+  This paper seeks to answer these questions and to prove that such artifacts 
+  can be used to determine, at least in part, what a user was doing during his 
+  or her ``private browsing'' session---thereby rendering it not very private 
+  at all.
   \end{abstract}
 
+  \doublespacing
   \section{Introduction}
     \subsection{Browser Overview}
     Currently, the most popular browsers for the Windows and Linux families of
@@ -28,6 +47,7 @@
     The features and protections provided by each of these private browsing
     modes are summarized below.\cite{verdi13}\cite{google13}\cite{ie13}
 
+    \singlespacing
     \begin{center}
       \begin{tabular}{|p{5cm}|c|c|c|}
         \hline
@@ -50,61 +70,37 @@
         \hline
         Simulataneous sessions with different privacy settings & X & X & X \\
         \hline
-        Hides activity from ISP &  &  &  \\
-        \hline
-        Hides activity from websites &  &  &  \\
-        \hline
       \end{tabular}
     \end{center}
+    \doublespacing
 
-    This paper also discusses the Tor browser. Unlike Firefox, Chrome, and
-    Internet Explorer, the Tor browser connects users to the internet using the
-    Tor network. This does much more to preserve browsing anonymity than the
-    browsers listed above. %finish this section
+    The private browsing modes of Firefox, Chrome, and Internet Explorer are
+    designed with the intent of preventing users of the same computer from
+    determining what someone was doing on that computer. They do not attempt
+    to keep a user's internet activities hidden from that user's internet
+    service provider (ISP), and they do not prevent websites from identifying
+    that user.\cite{verdi13}\cite{google13}\cite{ie13}
 
+    Users seeking this kind of anonymity should use the Tor browser, which
+    employs onion routing to connect a user to a destination server. In this
+    type of routing, a random path from the user to the destination is
+    constructed, and content is encrypted at each point in the path.
+    Furthermore, each point (known as a relay or node) only knows from which
+    relay any given piece of network traffic immediately came and the next
+    relay to which it is going. It does not know the original source of the
+    network traffic or its final destination. This is what allows users to keep
+    themselves and their activities anonymous using Tor in a way that the 
+    traditional web browsers cannot.\cite{tor13}
+
+    The specifics of the Tor network and how it can be used (and abused) will
+    not be considered here. It is mentioned because the Tor browser, like the
+    more common web browsers, can leave artifacts of web browsing sessions on
+    an individual's computer.
+    
     \subsection{Known Issues with Private Browsing}
     Prior research in this area indicates that web browsers, even when used in
     their respective private browsing modes, can leave artifacts on a user's
     machine that can reveal their internet activities. %finish
-
-  % Remove below before final submission
-  \iffalse
-  Most modern web browsers offer some sort of private browsing mode. This is
-  supposed to allow users to view web content without other users of the same
-  computer being able to determine what websites were visited. What is kept
-  private and what is not differs from browser to browser. An overview of the
-  most common browsers for Windows and Linux is provided below.
-
-    \subsection{Mozilla Firefox}
-    Mozilla Firefox runs on both Windows and Linux operating systems. Its
-    private browsing mode is known as simply Private Browsing. Mozilla explains
-    that it will not save information about websites and web pages accessed in
-    a private browsing session, but it also clearly states that it does not
-    preserve internet anonymity and does not prevent internet service
-    providers, network administrators, or websites from recording such
-    information. It is possible to have both private and non-private windows
-    open at the same time.\cite{verdi13}
-
-    \subsection{Google Chrome}
-    Google Chrome also runs on both Windows and Linux. Its private browsing
-    mode is called incognito mode. Browsing history and downloads are not
-    recorded when browsing in incognito mode, and any cookies created during
-    an incognito browsing session are deleted once the last incognito window is
-    closed. As with Firefox, private and non-private windows can be open at the
-    same time.\cite{google13}
-
-    \subsection{Microsoft Internet Explorer}
-    Microsoft Internet Explorer only runs on Windows. Its private browsing mode
-    is called InPrivate Browsing. Microsoft claims that this browsing mode
-    helps to ``prevent'' pages visited, cached data, cookies, and login
-    information from being stored after the browsing session terminates, but it
-    only guarantees that an InPrivate Browsing session won't retain information
-    about websites accessed or web searches. Once again, private and non-
-    private windows can be open simultaneously.\cite{ie13}
-
-    \subsection{Tor Browser Bundle}
-    The Tor Browser Bundle runs on both Windows and Linux. 
-  \fi
 
   \section{To the Community}
 
@@ -112,6 +108,7 @@
 
   \section{Conclusion}
 
+  \singlespacing
   \begin{thebibliography}{9}
     \bibitem{verdi13}
       Verdi, Michael et al. ``Private Browsing.'' \emph{Mozilla Support}. 
