@@ -1,7 +1,6 @@
-\documentclass[pdftex,letterpaper,titlepage,11pt]{article}
+\documentclass[pdftex,letterpaper,11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
-\usepackage{array}
 
 \hypersetup{
   colorlinks=false,
@@ -16,22 +15,24 @@
   \maketitle
   
   \begin{abstract}
-  Eventually the abstract will go here.
+  %write this
   \end{abstract}
 
   \section{Introduction}
     \subsection{Browser Overview}
-    The following table summarizes the web browsers that will be considered in
-    this paper. The features that a particular web browser's private mode is
-    believed to have comes from the developers of the browser. Note that all
-    browsers run on both Windows and Linux, with the exception of Internet
-    Explorer, which runs only on Windows.\cite{verdi13}\cite{google13}
-    \cite{ie13}
+    Currently, the most popular browsers for the Windows and Linux families of
+    operating systems are Mozilla Firefox, Google Chrome, and Microsoft 
+    Internet Explorer. (Internet Explorer runs only on the Windows family of
+    operating systems, whereas Firefox and Chrome run on both Windows and 
+    Linux.) All three of these browsers have built-in private browsing modes.
+    The features and protections provided by each of these private browsing
+    modes are summarized below.\cite{verdi13}\cite{google13}\cite{ie13}
 
     \begin{center}
-      \begin{tabular}{|m{'5cm'}|c|c|c|}
+      \begin{tabular}{|p{5cm}|c|c|c|}
         \hline
-        Property & Mozilla Firefox & Google Chrome & Internet Explorer \\
+         & Firefox & Chrome & Internet Explorer \\
+         & Private Browsing & Incognito Mode & InPrivate Browsng \\
         \hline
         Browser history & X & X & X \\
         \hline
@@ -56,11 +57,18 @@
       \end{tabular}
     \end{center}
 
-  This paper also discusses the Tor browser. Unlike Firefox, Chrome, and
-  Internet Explorer, the Tor browser connects users to the internet using the
-  Tor network. This does much more to preserve browsing anonymity than the
-  browsers listed above. TODO finish this\ldots lazy. 
+    This paper also discusses the Tor browser. Unlike Firefox, Chrome, and
+    Internet Explorer, the Tor browser connects users to the internet using the
+    Tor network. This does much more to preserve browsing anonymity than the
+    browsers listed above. %finish this section
 
+    \subsection{Known Issues with Private Browsing}
+    Prior research in this area indicates that web browsers, even when used in
+    their respective private browsing modes, can leave artifacts on a user's
+    machine that can reveal their internet activities. %finish
+
+  % Remove below before final submission
+  \iffalse
   Most modern web browsers offer some sort of private browsing mode. This is
   supposed to allow users to view web content without other users of the same
   computer being able to determine what websites were visited. What is kept
@@ -96,6 +104,7 @@
 
     \subsection{Tor Browser Bundle}
     The Tor Browser Bundle runs on both Windows and Linux. 
+  \fi
 
   \section{To the Community}
 
