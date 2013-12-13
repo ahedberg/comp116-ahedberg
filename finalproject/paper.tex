@@ -1,4 +1,4 @@
-\documentclass[pdftex,letterpaper,12pt]{article}
+\documentclass[pdftex,letterpaper,titlepage,12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage[doublespacing]{setspace}
@@ -39,11 +39,9 @@
   \doublespacing
   \section{Introduction}
     \subsection{Browser Overview}
-    Currently, the most popular browsers for the Windows and Linux families of
-    operating systems are Mozilla Firefox, Google Chrome, and Microsoft 
-    Internet Explorer. (Internet Explorer runs only on the Windows family of
-    operating systems, whereas Firefox and Chrome run on both Windows and 
-    Linux.) All three of these browsers have built-in private browsing modes.
+    Currently, the most popular browsers for the Windows family of operating 
+    systems are Mozilla Firefox, Google Chrome, and Microsoft Internet 
+    Explorer. All three of these browsers have built-in private browsing modes.
     The features and protections provided by each of these private browsing
     modes are summarized below.\cite{verdi13}\cite{google13}\cite{ie13}
 
@@ -74,39 +72,94 @@
     \end{center}
     \doublespacing
 
+    \subsection{What Private Browsing Is Not}
     The private browsing modes of Firefox, Chrome, and Internet Explorer are
     designed with the intent of preventing users of the same computer from
     determining what someone was doing on that computer. They do not attempt
     to keep a user's internet activities hidden from that user's internet
     service provider (ISP), and they do not prevent websites from identifying
-    that user.\cite{verdi13}\cite{google13}\cite{ie13}
-
-    Users seeking this kind of anonymity should use the Tor browser, which
-    employs onion routing to connect a user to a destination server. In this
-    type of routing, a random path from the user to the destination is
-    constructed, and content is encrypted at each point in the path.
-    Furthermore, each point (known as a relay or node) only knows from which
-    relay any given piece of network traffic immediately came and the next
-    relay to which it is going. It does not know the original source of the
-    network traffic or its final destination. This is what allows users to keep
-    themselves and their activities anonymous using Tor in a way that the 
-    traditional web browsers cannot.\cite{tor13}
+    that user.\cite{verdi13}\cite{google13}\cite{ie13} Users seeking this kind 
+    of anonymity should use the Tor browser, which employs onion routing to 
+    connect a user to a destination server. In this type of routing, a random 
+    path from the user to the destination is constructed, and content is 
+    encrypted at each point in the path. Furthermore, each point (known as a 
+    relay or node) only knows from which relay any given piece of network 
+    traffic immediately came and the next relay to which it is going. It does 
+    not know the original source of the network traffic or its final 
+    destination. This is what allows users to keep themselves and their 
+    activities anonymous using Tor in a way that the traditional web browsers 
+    cannot.\cite{tor13}
 
     The specifics of the Tor network and how it can be used (and abused) will
     not be considered here. It is mentioned because the Tor browser, like the
     more common web browsers, can leave artifacts of web browsing sessions on
     an individual's computer.
     
-    \subsection{Known Issues with Private Browsing}
-    Prior research in this area indicates that web browsers, even when used in
-    their respective private browsing modes, can leave artifacts on a user's
-    machine that can reveal their internet activities. %finish
-
   \section{To the Community}
+  There are many misconceptions about private browsing. Some believe that it
+  prevents an internet service provider, network administrator, or attackers
+  engaged in packet sniffing from linking a user's internet activities to his
+  or her identity. It does not. Any and all network packets leaving the user's
+  machine contain information such as the user's IP address, which can be used
+  to determine his or her location and/or identity. Others think that private
+  browsing sessions leave absolutely no trace of their activities on their
+  local machines. As the next section of this paper will describe, this is also
+  false. Still others think that private browsing will prevent the National
+  Security Agency from tracking them on social media. It certainly does not.
+  This paper will shed some light on what private browsing sessions can and
+  cannot do, allowing internet users to think twice before exploring the web.
 
-  \section{Applications}
+  \section{Applications: Forensics}
+  One of the biggest problems with private browsing sessions is that artifacts
+  remain on a machine after the user exits his or her internet browser. These
+  artifacts can include logon information for websites, browsing history,
+  and digital media such as images and videos---all items that you would expect
+  a private browsing session to keep private.\cite{ohana13}
+
+  This section will first summarize locations on a Windows machine where
+  private browsing artifacts might be found. An overview of what specific
+  artifacts were found for each browser using different forensic techniques
+  will follow. The use of SQLite to investigate specific browser artifacts will
+  then be discussed.
+
+    \subsection{Where To Look}
+    
+
+    Focused analysis of the hard drive itself can reveal the most artifacts.
+    One private browsing experiment in which logon information, browser
+    history, and cached images were recovered obtained most of the artifacts
+    from portions of the hard disk known as \emph{free space} and \emph{slack
+    space}. Free space refers to a group of hard drive sectors (called a
+    \emph{cluster} that is not allocated to any particular file. Slack space, 
+    on the other hand, refers to the space between the end of a file and the 
+    end of the cluster in which it is stored. Hard drive clusters are of a 
+    fixed size determined by the operating system. Most of the time, when a 
+    user saves a file to his or her hard drive, the file is not exactly the
+    same size as the cluster in which the operating system puts it.
+    Furthermore, when a user ``deletes'' a file from his or her hard drive, the
+    file is not really deleted---it is simply marked as available to be
+    overwritten if necessary. If a file is eventually stored on the hard drive
+    in a cluster that used to be home to a larger (now ``deleted'') file,
+    leftover data from the old file will still exist at the end of that
+    cluster.
+
+    \subsection{Firefox}
+
+
+    \subsection{Google Chrome}
+
+
+    \subsection{Internet Explorer}
+    Internet Explorer leaves the most artifacts behind when its InPrivate
+    Browsing mode terminates.\cite{ohana13} 
+
+    \subsection{Tor}
+
+
+    \subsection{Forensic Software}
 
   \section{Conclusion}
+
 
   \singlespacing
   \begin{thebibliography}{9}
@@ -126,6 +179,13 @@
     \bibitem{tor13}
       ``Tor Project: Overview.'' \emph{Tor}. Tor, 7 Dec. 2013. Web. 10 Dec. 
       2013. $<$\url{http://www.torproject.org/about/overview.html.en}$>$. 
+    \bibitem{ohana13}
+      Ohana, Donny, and Narasimha Shashidhar. ``Do Private and Portable Web 
+      Browsers Leave Incriminating Evidence? A Forensic Analysis of Residual 
+      Artifacts from Private and Portable Web Browsing Sessions.'' IEEE CS 
+      Security and Privacy Workshops (SPW), The Westin St. Francis, 
+      San Francisco, CA. 23-24 May 2013. Web. 9 Dec. 2013. $<$\url{http://www.
+      ieee-security.org/TC/SPW2013/papers/data/5017a135.pdf}$>$
 
   \end{thebibliography}
 
