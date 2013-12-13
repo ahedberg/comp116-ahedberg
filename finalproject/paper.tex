@@ -78,22 +78,7 @@
     determining what someone was doing on that computer. They do not attempt
     to keep a user's internet activities hidden from that user's internet
     service provider (ISP), and they do not prevent websites from identifying
-    that user.\cite{verdi13}\cite{google13}\cite{ie13} Users seeking this kind 
-    of anonymity should use the Tor browser, which employs onion routing to 
-    connect a user to a destination server. In this type of routing, a random 
-    path from the user to the destination is constructed, and content is 
-    encrypted at each point in the path. Furthermore, each point (known as a 
-    relay or node) only knows from which relay any given piece of network 
-    traffic immediately came and the next relay to which it is going. It does 
-    not know the original source of the network traffic or its final 
-    destination. This is what allows users to keep themselves and their 
-    activities anonymous using Tor in a way that the traditional web browsers 
-    cannot.\cite{tor13}
-
-    The specifics of the Tor network and how it can be used (and abused) will
-    not be considered here. It is mentioned because the Tor browser, like the
-    more common web browsers, can leave artifacts of web browsing sessions on
-    an individual's computer.
+    that user.\cite{verdi13}\cite{google13}\cite{ie13} 
     
   \section{To the Community}
   There are many misconceptions about private browsing. Some believe that it
@@ -123,25 +108,37 @@
   then be discussed.
 
     \subsection{Where To Look}
-    
-
     Focused analysis of the hard drive itself can reveal the most artifacts.
     One private browsing experiment in which logon information, browser
     history, and cached images were recovered obtained most of the artifacts
     from portions of the hard disk known as \emph{free space} and \emph{slack
-    space}. Free space refers to a group of hard drive sectors (called a
-    \emph{cluster} that is not allocated to any particular file. Slack space, 
-    on the other hand, refers to the space between the end of a file and the 
-    end of the cluster in which it is stored. Hard drive clusters are of a 
-    fixed size determined by the operating system. Most of the time, when a 
-    user saves a file to his or her hard drive, the file is not exactly the
-    same size as the cluster in which the operating system puts it.
+    space}.\cite{ohana13} Free space refers to a group of hard drive sectors 
+    (called a \emph{cluster}) that is not allocated to any particular file.
+    Slack space,on the other hand, refers to the space between the end of a 
+    file and the end of the cluster in which it is stored. Hard drive clusters 
+    are of a fixed size determined by the operating system. Most of the time, 
+    when a user saves a file to his or her hard drive, the file is not exactly 
+    the same size as the cluster in which the operating system puts it.
     Furthermore, when a user ``deletes'' a file from his or her hard drive, the
     file is not really deleted---it is simply marked as available to be
     overwritten if necessary. If a file is eventually stored on the hard drive
     in a cluster that used to be home to a larger (now ``deleted'') file,
     leftover data from the old file will still exist at the end of that
     cluster.
+
+    Artifacts can also be recovered from the computer's memory itself. Cached
+    web documents can often be found here.\cite{ohana13} Browsing history,
+    logon information, and cookies have been detected after private browsing
+    sessions by analyzing a computer's memory. The SQLite databases used by 
+    Chrome and Firefox during browsing sessions are generally only stored in 
+    memory when private browsing is in use, and their residual data could be 
+    detected, as well.\cite{satvat13}
+
+    The Windows pagefile can also reveal private browsing artifacts. This file
+    is where the least recently used pages of memory are stored when too many
+    applications are competing for the computer's physical memory. Browsing
+    history and keywords used in internet search engines have been discovered
+    here.\cite{said11}
 
     \subsection{Firefox}
 
@@ -153,13 +150,43 @@
     Internet Explorer leaves the most artifacts behind when its InPrivate
     Browsing mode terminates.\cite{ohana13} 
 
-    \subsection{Tor}
-
-
     \subsection{Forensic Software}
 
-  \section{Conclusion}
 
+  \section{Conclusion}
+  With all the ways in which private browsing modes can leak information, it
+  may seem as though they are completely useless. This is not entirely true.
+  While private browsing sessions won't help anyone evade law enforcement, a
+  forensic investigation, or the United States government, they are still good
+  enough to fool most computer users. Nosy roommates, family members, or
+  patrons at the public library are unlikely to go to the lengths discussed in
+  this paper to determine what someone else was doing on the internet.
+
+  That said, private browsing modes don't do much to keep a user's identity
+  private to the outside world. Users seeking this kind of anonymity should 
+  consider using the Tor browser, which employs onion routing to connect them 
+  to their destination server. In this type of routing, a random path from the 
+  user to the destination is constructed, and content is encrypted at each 
+  point in the path. Furthermore, each point (known as a relay or node) only 
+  knows from which relay any given piece of network traffic immediately came 
+  and the next relay to which it is going. It does not know the original source
+  of the network traffic or its final destination. This is what allows users to
+  keep themselves and their activities anonymous using Tor in a way that the 
+  traditional web browsers cannot.\cite{tor13} Of course, this type of browsing
+  can be (ab)used for a whole host of illicit activities, but those are beyond
+  the scope of this paper.
+
+  Until Mozilla, Google, and Microsoft reduce the artifacts leaker by their
+  respective browsers' private modes, users who are concerned about ``local 
+  attackers''---those of the nosy roommate or family member variety who have 
+  physical access to their machine---can do their part to keep their private
+  information secure. Random access memory, where private browsing artifacts
+  have been found, is cleared when a computer is powered down. Shutting down
+  the computer after a private browsing session can reduce or eliminate these
+  artifacts. Hard drive artifacts, however, are nearly impossible to eradicate.
+  The moral of the story is that private browsing is nothing more than a nice
+  illusion useful for fooling the computer-illiterate. At the end of the day,
+  private browsing really isn't that private at all.
 
   \singlespacing
   \begin{thebibliography}{9}
@@ -186,6 +213,18 @@
       Security and Privacy Workshops (SPW), The Westin St. Francis, 
       San Francisco, CA. 23-24 May 2013. Web. 9 Dec. 2013. $<$\url{http://www.
       ieee-security.org/TC/SPW2013/papers/data/5017a135.pdf}$>$
+    \bibitem{satvat13}
+      Satvat, Kiavash, Matthew Forshaw, Feng Hao, and Ehsan Toreini. ``On The 
+      Privacy of Private Browsing - A Forensic Approach.'' Proceedings of the 
+      8th International Workshop on Data Privacy Management (DPM '13), Royal 
+      Holloway, University of London, Egham, UK. 12-13 Sept. 2013. Web. 9 Dec.
+      2013. $<$\url{http://homepages.cs.ncl.ac.uk/feng.hao/files/DPM13.pdf}$>$ 
+    \bibitem{said11}
+      Said, Huwida, Noora Al Mutawa, Ibtesam Al Awadhi, and Mario Guimaraes.
+      ``Forensic Analysis of Private Browsing Artifacts.'' 7th International
+      Conference on Innovations in Information Technology, Abu Dhabi, United
+      Arab Emirates. 25-27 Apr. 2011. Web. 10 Dec. 2013. $<$\url{http://
+      ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=5893816}$>$ 
 
   \end{thebibliography}
 
