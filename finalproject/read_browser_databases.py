@@ -11,7 +11,6 @@ import os
 
 # hard-coded search path - find environment variable
 searchpaths = []
-
 searchpaths.append(r"C:\Users\Ashley\AppData\Local\Mozilla\Firefox\Profiles")
 searchpaths.append(r"C:\Users\Ashley\AppData\Roaming\Mozilla\Firefox\Profiles")
 
@@ -23,7 +22,16 @@ for path in searchpaths:
 				conn = sqlite3.connect(db)
 				cursor = conn.cursor()
 				try:
-					cursor.execute("SELECT name FROM sqlite_master;")
+					cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 				except sqlite3.DatabaseError:
 					print("Error reading", db)
+				else:
+					tables = cursor.fetchall()
+					for name in tables:
+						print(name[0])
+						cursor.execute("SELECT sql FROM sqlite_master WHERE type='table' AND tbl_name=?;", name)
+						print(cursor.fetchall())
+						cursor.execute("SELECT * FROM {tablename}".format(tablename=name[0]))
+						print(cursor.fetchone())
+						print()
 				conn.close()
