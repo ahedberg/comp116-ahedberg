@@ -70,8 +70,8 @@
         \hline
       \end{tabular}
     \end{center}
-    \doublespacing
 	
+    \doublespacing
 	\subsection{Definitions}
 	Many shortcomings of private browsing modes relate to how a computer's 
 	operating system manages memory and disk space. Those who are unfamiliar
@@ -81,6 +81,8 @@
 	  \item[Cluster] A group of disk sectors that the operating system
 	  treats as a unit; smallest unit of disk storage that the operating
 	  system can allocate
+	  \item[Digital certificate] Verifies that a particular website or target
+	  server is who it claims to be when connecting securely
 	  \item[Disk] The hard drive of a computer; where a user's files and
 	  directories (among other things) are stored
 	  \item[Free space] A cluster that is not allocated to any particular 
@@ -130,10 +132,15 @@
   then be discussed.
 
     \subsection{Where To Look}
-    Focused analysis of the hard drive itself can reveal the most artifacts.
+    Focused analysis of the hard drive can reveal the most artifacts.
     One private browsing experiment in which logon information, browser
     history, and cached images were recovered obtained most of the artifacts
-    from the hard drive's free space and slack space.\cite{ohana13}
+    from the hard drive's free space and slack space.\cite{ohana13} The 
+	Windows pagefile (pagefile.sys on the hard drive) in particular can reveal
+	private browsing artifacts. This file is where the least recently used 
+	pages of memory are stored when too many applications are competing for the
+	computer's physical memory. Browsing history and keywords used in internet 
+	search engines have been discovered here.\cite{said11}
 
     Artifacts can also be recovered from the computer's memory itself. Cached
     web documents can often be found here.\cite{ohana13} Browsing history,
@@ -143,27 +150,28 @@
     memory when private browsing is in use, and their residual data could be 
     detected, as well.\cite{satvat13}
 
-    The Windows pagefile can also reveal private browsing artifacts. This file
-    is where the least recently used pages of memory are stored when too many
-    applications are competing for the computer's physical memory. Browsing
-    history and keywords used in internet search engines have been discovered
-    here.\cite{said11}
-
     \subsection{Firefox}
 	In 2011, researchers discovered that Firefox 3.6.11 stored browser history
 	and search engine keywords in the computer's physical memory and that this
 	information could be accessed after the browsing session was terminated.
 	An analysis of the contents of pagefile.sys revealed similar information.
-	\cite{said11} Additionally, certificate chains received during private 
+	\cite{said11} Additionally, digital certificates received during private 
 	browsing sessions in Firefox 3.6 were not removed from their on-disk 
-	database once the browsing session was terminated. 
+	database once the browsing session was terminated.\cite{aggarwal10} 
 
     \subsection{Google Chrome}
-
+    One 2013 study stated that it was more difficult to retrieve private
+	browsing artifacts from Chrome's incognito mode than Firefox or Internet
+	Explorer.\cite{said11} 
 
     \subsection{Internet Explorer}
     Internet Explorer leaves the most artifacts behind when its InPrivate
-    Browsing mode terminates.\cite{ohana13} 
+    Browsing mode terminates.\cite{ohana13} Internet Explorer 8.0.6001.18702
+	continued to cache web pages on the hard drive during an InPrivate
+	Browsing session, but these files were deleted once the browser window was
+	closed. This means that fragments of these files---and thus a record of the
+	user's browsing history---could be discovered by analyzing the free and
+	slack space of the hard drive.\cite{said11}
 
     \subsection{Forensic Software}
 
@@ -205,11 +213,12 @@
 
   \singlespacing
   \begin{thebibliography}{9}
-    \bibitem{verdi13}
-      Verdi, Michael et al. ``Private Browsing.'' \emph{Mozilla Support}. 
-      Mozilla Foundation, 29 Mar. 2013. Web. 10 Dec. 2013. 
-      $<$\url{http://support.mozilla.org/en-US/kb/private-browsing-browse-web-
-      without-saving-info}$>$.
+	\bibitem{aggarwal10}
+	  Aggarwal, Gaurav, Elie Bursztein, Collin Jackson, and Dan Boneh.
+	  ``An Analysis of Private Browsing Modes in Modern Browsers.''
+	  Proceedings of the 19th USENIX Security Symposium,  Wardman Park Marriott
+	  Hotel, Washington, D.C. 11-13 Aug. 2013. Web. 8 Dec. 2013. $<$
+	  \url{http://crypto.stanford.edu/~dabo/pubs/papers/privatebrowsing.pdf}$>$
     \bibitem{google13}
       ``Chrome Browser.'' \emph{Chrome}. Google, 18 Nov. 2013. Web. 10 Dec. 
       2013. $<$\url{http://www.google.com/intl/en/chrome/browser/
@@ -218,9 +227,6 @@
       ``InPrivate Browsing.'' \emph{Microsoft Windows}. Microsoft, 10 Dec. 
       2013. Web. 10 Dec. 2013. $<$\url{http://windows.microsoft.com/en-us/
       internet-explorer/products/ie-9/features/in-private}$>$.
-    \bibitem{tor13}
-      ``Tor Project: Overview.'' \emph{Tor}. Tor, 7 Dec. 2013. Web. 10 Dec. 
-      2013. $<$\url{http://www.torproject.org/about/overview.html.en}$>$. 
     \bibitem{ohana13}
       Ohana, Donny, and Narasimha Shashidhar. ``Do Private and Portable Web 
       Browsers Leave Incriminating Evidence? A Forensic Analysis of Residual 
@@ -228,20 +234,25 @@
       Security and Privacy Workshops (SPW), The Westin St. Francis, 
       San Francisco, CA. 23-24 May 2013. Web. 9 Dec. 2013. $<$\url{http://www.
       ieee-security.org/TC/SPW2013/papers/data/5017a135.pdf}$>$
-    \bibitem{satvat13}
-      Satvat, Kiavash, Matthew Forshaw, Feng Hao, and Ehsan Toreini. ``On The 
-      Privacy of Private Browsing - A Forensic Approach.'' Proceedings of the 
-      8th International Workshop on Data Privacy Management (DPM '13), Royal 
-      Holloway, University of London, Egham, UK. 12-13 Sept. 2013. Web. 9 Dec.
-      2013. $<$\url{http://homepages.cs.ncl.ac.uk/feng.hao/files/DPM13.pdf}$>$ 
     \bibitem{said11}
       Said, Huwida, Noora Al Mutawa, Ibtesam Al Awadhi, and Mario Guimaraes.
       ``Forensic Analysis of Private Browsing Artifacts.'' 7th International
       Conference on Innovations in Information Technology, Abu Dhabi, United
       Arab Emirates. 25-27 Apr. 2011. Web. 10 Dec. 2013. $<$\url{http://
       ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=5893816}$>$ 
-
+    \bibitem{satvat13}
+      Satvat, Kiavash, Matthew Forshaw, Feng Hao, and Ehsan Toreini. ``On The 
+      Privacy of Private Browsing - A Forensic Approach.'' Proceedings of the 
+      8th International Workshop on Data Privacy Management (DPM '13), Royal 
+      Holloway, University of London, Egham, UK. 12-13 Sept. 2013. Web. 9 Dec.
+      2013. $<$\url{http://homepages.cs.ncl.ac.uk/feng.hao/files/DPM13.pdf}$>$ 
+	\bibitem{tor13}
+      ``Tor Project: Overview.'' \emph{Tor}. Tor, 7 Dec. 2013. Web. 10 Dec. 
+      2013. $<$\url{http://www.torproject.org/about/overview.html.en}$>$. 
+	\bibitem{verdi13}
+      Verdi, Michael et al. ``Private Browsing.'' \emph{Mozilla Support}. 
+      Mozilla Foundation, 29 Mar. 2013. Web. 10 Dec. 2013. 
+      $<$\url{http://support.mozilla.org/en-US/kb/private-browsing-browse-web-
+      without-saving-info}$>$.
   \end{thebibliography}
-
-
 \end{document}
