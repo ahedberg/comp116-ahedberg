@@ -71,14 +71,36 @@
       \end{tabular}
     \end{center}
     \doublespacing
-
-    \subsection{What Private Browsing Is Not}
-    The private browsing modes of Firefox, Chrome, and Internet Explorer are
-    designed with the intent of preventing users of the same computer from
-    determining what someone was doing on that computer. They do not attempt
-    to keep a user's internet activities hidden from that user's internet
-    service provider (ISP), and they do not prevent websites from identifying
-    that user.\cite{verdi13}\cite{google13}\cite{ie13} 
+	
+	\subsection{Definitions}
+	Many shortcomings of private browsing modes relate to how a computer's 
+	operating system manages memory and disk space. Those who are unfamiliar
+	with these tasks may benefit from the definitions below.
+	
+	\begin{description}
+	  \item[Cluster] A group of disk sectors that the operating system
+	  treats as a unit; smallest unit of disk storage that the operating
+	  system can allocate
+	  \item[Disk] The hard drive of a computer; where a user's files and
+	  directories (among other things) are stored
+	  \item[Free space] A cluster that is not allocated to any particular 
+	  file
+	  \item[Page] The smallest unit of memory that the operating system can
+	  allocate; can be temporarily stored on disk to allow the computer to run
+	  more programs at the same time
+	  \item[Slack space] The space between the end of a file and the end of 
+	  the cluster in which it is stored; important in computer forensics for
+	  finding fragments of old files\footnote{Hard drive clusters are of a 
+	  fixed size determined by the operating system. Most of the time, when a 
+	  user saves a file to his or her hard drive, the file is not exactly the 
+	  same size as the cluster in which the operating system puts it. 
+	  Furthermore, when a user ``deletes'' a file from his or her hard drive, 
+	  the file is not really deleted---it is simply marked as available to be
+      overwritten if necessary. If a file is eventually stored on the hard 
+	  drive in a cluster that used to be home to a larger (now ``deleted'') 
+	  file, leftover data from the old file will still exist at the end of that
+      cluster.}
+	\end{description}
     
   \section{To the Community}
   There are many misconceptions about private browsing. Some believe that it
@@ -111,20 +133,7 @@
     Focused analysis of the hard drive itself can reveal the most artifacts.
     One private browsing experiment in which logon information, browser
     history, and cached images were recovered obtained most of the artifacts
-    from portions of the hard disk known as \emph{free space} and \emph{slack
-    space}.\cite{ohana13} Free space refers to a group of hard drive sectors 
-    (called a \emph{cluster}) that is not allocated to any particular file.
-    Slack space,on the other hand, refers to the space between the end of a 
-    file and the end of the cluster in which it is stored. Hard drive clusters 
-    are of a fixed size determined by the operating system. Most of the time, 
-    when a user saves a file to his or her hard drive, the file is not exactly 
-    the same size as the cluster in which the operating system puts it.
-    Furthermore, when a user ``deletes'' a file from his or her hard drive, the
-    file is not really deleted---it is simply marked as available to be
-    overwritten if necessary. If a file is eventually stored on the hard drive
-    in a cluster that used to be home to a larger (now ``deleted'') file,
-    leftover data from the old file will still exist at the end of that
-    cluster.
+    from the hard drive's free space and slack space.\cite{ohana13}
 
     Artifacts can also be recovered from the computer's memory itself. Cached
     web documents can often be found here.\cite{ohana13} Browsing history,
@@ -141,7 +150,13 @@
     here.\cite{said11}
 
     \subsection{Firefox}
-
+	In 2011, researchers discovered that Firefox 3.6.11 stored browser history
+	and search engine keywords in the computer's physical memory and that this
+	information could be accessed after the browsing session was terminated.
+	An analysis of the contents of pagefile.sys revealed similar information.
+	\cite{said11} Additionally, certificate chains received during private 
+	browsing sessions in Firefox 3.6 were not removed from their on-disk 
+	database once the browsing session was terminated. 
 
     \subsection{Google Chrome}
 
