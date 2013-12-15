@@ -62,7 +62,7 @@ def interact():
 	searchpaths.append(r"{start}\Mozilla\Firefox\Profiles".format(start=prefix))
 
 	# Finds available tables
-	tables = []
+	db_map = {}
 	for path in searchpaths:
 		for dirpath, dirnames, filenames in os.walk(path):
 			for file in filenames:
@@ -75,25 +75,36 @@ def interact():
 					except sqlite3.DatabaseError:
 						print("Error reading", db)
 					else:
-						tables.append(cursor.fetchall())
+						for table in cursor.fetchall():
+							print(table)
+							db_map[table[0]] = db
 					conn.close()
 	
 	finished = False
 	while not finished:
 		print("Type a table name to view its data.")
-		for name in tables:
+		for name in db_map:
 			print(name)
 		choice = input("View table (or Q to quit): ")
 		if choice == "Q":
 			finished = True
 			continue
-		if choice not in tables:
+		if choice not in db_map:
 			print("Error: Not a valid table.")
 			continue
 		else:
-			print("Error: Not yet implemented.")
-		# Realized that this doesn't associate table names with files. Hmm.
+			conn = sqlite3.connect(db_map[choice])
+			cursor = conn.cursor()
+			# Should use a try-except here
+			cursor.execute("SELECT * FROM {table}".format(table=choice))
+			for item in cursor.fetchall():
+				print(item)
+			conn.close()
+			if input("Hit any key to continue (or Q to quit)") == "Q":
+				finished = True
+	exit(0)
 
+# MAIN
 # Checks to be sure we're running on Windows with Python 3.3.3
 if sys.platform != "win32":
 	print("Error: This program runs on Windows.")
