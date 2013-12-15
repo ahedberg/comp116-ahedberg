@@ -8,6 +8,7 @@
   pdfborder={0 0 0}
 }
 \setlength\parindent{0.5in}
+\doublespacing
 
 \begin{document}
   \singlespacing
@@ -24,74 +25,51 @@
   offers users a false sense of security, as browsing information is often left
   behind when a private browsing session terminates. Several researchers have 
   already demonstrated methods of detecting this information. These include the
-  analysis of virtual and browser memory and the pagefile on Windows machines.
+  analysis of the hard drive, memory, and the pagefile on Windows machines.
   The existence of private browsing artifacts on a user’s machine raises many 
   questions: how much privacy do web browser developers actually aim to provide
   with ``private browsing'' modes? Are these goals accurately conveyed to the 
-  end user? And, if the user’s browsing session can be reconstructed from these
-  artifacts, how might this be exploited by digital forensics professionals? 
-  This paper seeks to answer these questions and to prove that such artifacts 
-  can be used to determine, at least in part, what a user was doing during his 
-  or her ``private browsing'' session---thereby rendering it not very private 
-  at all.
+  end user? And, if the user’s browsing session can be reconstructed from these 
+  artifacts, how much information would digital forensics professionals be 
+  able to gain? This paper seeks to answer these questions and to prove that 
+  such artifactscan be used to determine, at least in part, what a user was 
+  doing during his or her ``private browsing'' session---thereby rendering it 
+  not very private at all.
   \end{abstract}
 
-  \doublespacing
   \section{Introduction}
     \subsection{Browser Overview}
     Currently, the most popular browsers for the Windows family of operating 
     systems are Mozilla Firefox, Google Chrome, and Microsoft Internet 
     Explorer. All three of these browsers have built-in private browsing modes.
-    The features and protections provided by each of these private browsing
-    modes are summarized below.\cite{verdi13}\cite{google13}\cite{ie13}
+    While they all have different names---``Private Browsing'' in Firefox,
+    ``Incognito Mode'' in Chrome, and ``InPrivate Browsing'' in Internet
+    Explorer---they all claim to do essentially the same thing: allow a user to
+    browse the web without traces of his or her browsing history, login
+    information, form and search bar entries, or downloads remaining on his or
+    her machine.\cite{verdi13}\cite{google13}\cite{ie13}
 
-    \singlespacing
-    \begin{center}
-      \begin{tabular}{|p{5cm}|c|c|c|}
-        \hline
-         & Firefox & Chrome & Internet Explorer \\
-         & Private Browsing & Incognito Mode & InPrivate Browsng \\
-        \hline
-        Browser history & X & X & X \\
-        \hline
-        Form data & X &  & X \\
-        \hline
-        Search bar data & X &  & X \\
-        \hline
-        Passwords & X &  & X \\
-        \hline
-        Downloads & X & X &  \\
-        \hline
-        Cookies & X & X & X \\
-        \hline
-        Cached files & X &  & X \\
-        \hline
-        Simulataneous sessions with different privacy settings & X & X & X \\
-        \hline
-      \end{tabular}
-    \end{center}
-    
-    \doublespacing
     \subsection{Definitions}
     Many shortcomings of private browsing modes relate to how a computer's 
     operating system manages memory and disk space. Those who are unfamiliar
     with these tasks may benefit from the definitions below.
-    
-    \begin{description}
-      \item[Cluster] A group of disk sectors that the operating system
+   
+    \singlespacing
+    \begin{itemize}
+      \item \emph{Cluster}: A group of disk sectors that the operating system
       treats as a unit; smallest unit of disk storage that the operating
       system can allocate
-      \item[Digital certificate] Verifies that a particular website or target
-      server is who it claims to be when connecting securely
-      \item[Disk] The hard drive of a computer; where a user's files and
+      \item \emph{Digital certificate}: Verifies that a particular website or 
+      target server is who it claims to be when connecting securely
+      \item \emph{Disk}: The hard drive of a computer; where a user's files and
       directories (among other things) are stored
-      \item[Free space] A cluster that is not allocated to any particular 
-      file
-      \item[Page] The smallest unit of memory that the operating system can
-      allocate; can be temporarily stored on disk to allow the computer to run
-      more programs at the same time
-      \item[Slack space] The space between the end of a file and the end of 
-      the cluster in which it is stored; important in computer forensics for
+      \item \emph{Free space}: A cluster that is not allocated to any 
+      particular file
+      \item \emph{Page}: The smallest unit of memory that the operating system 
+      can allocate; can be temporarily stored on disk to allow the computer to 
+      run more programs at the same time
+      \item \emph{Slack space}: The space between the end of a file and the end
+      of the cluster in which it is stored; important in computer forensics for
       finding fragments of old files\footnote{Hard drive clusters are of a 
       fixed size determined by the operating system. Most of the time, when a 
       user saves a file to his or her hard drive, the file is not exactly the 
@@ -102,8 +80,9 @@
       drive in a cluster that used to be home to a larger (now ``deleted'') 
       file, leftover data from the old file will still exist at the end of that
       cluster.}
-    \end{description}
+    \end{itemize}
     
+  \doublespacing
   \section{To the Community}
   There are many misconceptions about private browsing. Some believe that it
   prevents an internet service provider, network administrator, or attackers
@@ -123,10 +102,9 @@
   remain on a machine after the user exits his or her internet browser. These
   artifacts can include logon information for websites, browsing history,
   and digital media such as images and videos---all items that you would expect
-  a private browsing session to keep private.\cite{ohana13} Private browsing
-  sessions can be exploited by browser extensions and remote attacks, but this 
-  section will focus on artifacts left on a local machine by the browsers 
-  themselves.
+  a private browsing session to keep private. Additionally, browser extensions 
+  can often record this kind of information, even when a user is browsing 
+  privately.
 
     \subsection{Where To Look}
     Focused analysis of the hard drive can reveal the most artifacts.
@@ -198,6 +176,9 @@
     files no longer contained evidence of browsing history as of version 
     10.0.9200.16521. This had been an issue in previous versions of the 
     browser.\cite{satvat13}    
+
+    %\subsection{Browser Extensions}
+    % Write me!
 
   \section{Conclusion}
   With all the ways in which private browsing modes can leak information, it
