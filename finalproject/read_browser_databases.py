@@ -9,10 +9,16 @@
 import sqlite3
 import os
 
-# hard-coded search path - find environment variable
+user = os.environ.get(r"USERPROFILE")
+if user is None:
+	print("Error: cannot access user's directory")
+	exit(1)
+	
 searchpaths = []
-searchpaths.append(r"C:\Users\Ashley\AppData\Local\Mozilla\Firefox\Profiles")
-searchpaths.append(r"C:\Users\Ashley\AppData\Roaming\Mozilla\Firefox\Profiles")
+prefix = os.getenv(r"LOCALAPPDATA", r"{user}\AppData\Local".format(user=user))
+searchpaths.append("{start}\Mozilla\Firefox\Profiles".format(start=prefix))
+prefix = os.getenv(r"APPDATA", r"{user}\AppData\Roaming".format(user=user))
+searchpaths.append(r"{start}\Mozilla\Firefox\Profiles".format(start=prefix))
 
 for path in searchpaths:
 	for dirpath, dirnames, filenames in os.walk(path):
