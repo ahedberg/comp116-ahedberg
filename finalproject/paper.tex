@@ -70,39 +70,39 @@
         \hline
       \end{tabular}
     \end{center}
-	
+    
     \doublespacing
-	\subsection{Definitions}
-	Many shortcomings of private browsing modes relate to how a computer's 
-	operating system manages memory and disk space. Those who are unfamiliar
-	with these tasks may benefit from the definitions below.
-	
-	\begin{description}
-	  \item[Cluster] A group of disk sectors that the operating system
-	  treats as a unit; smallest unit of disk storage that the operating
-	  system can allocate
-	  \item[Digital certificate] Verifies that a particular website or target
-	  server is who it claims to be when connecting securely
-	  \item[Disk] The hard drive of a computer; where a user's files and
-	  directories (among other things) are stored
-	  \item[Free space] A cluster that is not allocated to any particular 
-	  file
-	  \item[Page] The smallest unit of memory that the operating system can
-	  allocate; can be temporarily stored on disk to allow the computer to run
-	  more programs at the same time
-	  \item[Slack space] The space between the end of a file and the end of 
-	  the cluster in which it is stored; important in computer forensics for
-	  finding fragments of old files\footnote{Hard drive clusters are of a 
-	  fixed size determined by the operating system. Most of the time, when a 
-	  user saves a file to his or her hard drive, the file is not exactly the 
-	  same size as the cluster in which the operating system puts it. 
-	  Furthermore, when a user ``deletes'' a file from his or her hard drive, 
-	  the file is not really deleted---it is simply marked as available to be
+    \subsection{Definitions}
+    Many shortcomings of private browsing modes relate to how a computer's 
+    operating system manages memory and disk space. Those who are unfamiliar
+    with these tasks may benefit from the definitions below.
+    
+    \begin{description}
+      \item[Cluster] A group of disk sectors that the operating system
+      treats as a unit; smallest unit of disk storage that the operating
+      system can allocate
+      \item[Digital certificate] Verifies that a particular website or target
+      server is who it claims to be when connecting securely
+      \item[Disk] The hard drive of a computer; where a user's files and
+      directories (among other things) are stored
+      \item[Free space] A cluster that is not allocated to any particular 
+      file
+      \item[Page] The smallest unit of memory that the operating system can
+      allocate; can be temporarily stored on disk to allow the computer to run
+      more programs at the same time
+      \item[Slack space] The space between the end of a file and the end of 
+      the cluster in which it is stored; important in computer forensics for
+      finding fragments of old files\footnote{Hard drive clusters are of a 
+      fixed size determined by the operating system. Most of the time, when a 
+      user saves a file to his or her hard drive, the file is not exactly the 
+      same size as the cluster in which the operating system puts it. 
+      Furthermore, when a user ``deletes'' a file from his or her hard drive, 
+      the file is not really deleted---it is simply marked as available to be
       overwritten if necessary. If a file is eventually stored on the hard 
-	  drive in a cluster that used to be home to a larger (now ``deleted'') 
-	  file, leftover data from the old file will still exist at the end of that
+      drive in a cluster that used to be home to a larger (now ``deleted'') 
+      file, leftover data from the old file will still exist at the end of that
       cluster.}
-	\end{description}
+    \end{description}
     
   \section{To the Community}
   There are many misconceptions about private browsing. Some believe that it
@@ -123,24 +123,21 @@
   remain on a machine after the user exits his or her internet browser. These
   artifacts can include logon information for websites, browsing history,
   and digital media such as images and videos---all items that you would expect
-  a private browsing session to keep private.\cite{ohana13}
-
-  This section will first summarize locations on a Windows machine where
-  private browsing artifacts might be found. An overview of what specific
-  artifacts were found for each browser using different forensic techniques
-  will follow. The use of SQLite to investigate specific browser artifacts will
-  then be discussed.
+  a private browsing session to keep private.\cite{ohana13} Private browsing
+  sessions can be exploited by browser extensions and remote attacks, but this 
+  section will focus on artifacts left on a local machine by the browsers 
+  themselves.
 
     \subsection{Where To Look}
     Focused analysis of the hard drive can reveal the most artifacts.
     One private browsing experiment in which logon information, browser
     history, and cached images were recovered obtained most of the artifacts
     from the hard drive's free space and slack space.\cite{ohana13} The 
-	Windows pagefile (pagefile.sys on the hard drive) in particular can reveal
-	private browsing artifacts. This file is where the least recently used 
-	pages of memory are stored when too many applications are competing for the
-	computer's physical memory. Browsing history and keywords used in internet 
-	search engines have been discovered here.\cite{said11}
+    Windows pagefile (pagefile.sys on the hard drive) in particular can reveal
+    private browsing artifacts. This file is where the least recently used 
+    pages of memory are stored when too many applications are competing for the
+    computer's physical memory. Browsing history and keywords used in internet 
+    search engines have been discovered here.\cite{said11}
 
     Artifacts can also be recovered from the computer's memory itself. Cached
     web documents can often be found here.\cite{ohana13} Browsing history,
@@ -151,30 +148,57 @@
     detected, as well.\cite{satvat13}
 
     \subsection{Firefox}
-	In 2011, researchers discovered that Firefox 3.6.11 stored browser history
-	and search engine keywords in the computer's physical memory and that this
-	information could be accessed after the browsing session was terminated.
-	An analysis of the contents of pagefile.sys revealed similar information.
-	\cite{said11} Additionally, digital certificates received during private 
-	browsing sessions in Firefox 3.6 were not removed from their on-disk 
-	database once the browsing session was terminated.\cite{aggarwal10} 
+    In 2011, researchers discovered that Firefox 3.6.11 stored browser history
+    and search engine keywords in the computer's physical memory and that this
+    information could be accessed after the browsing session was terminated.
+    An analysis of the contents of pagefile.sys revealed similar information.
+    \cite{said11} The presence of these in-memory artifacts persisted through 
+    Firefox 17.0.1.\cite{ohana13} Additionally, digital certificates received 
+    during private browsing sessions in Firefox 3.6 were not removed from their 
+    on-disk database once the browsing session was terminated.\cite{aggarwal10}
+    
+    Researchers demonstrated in 2013 that on-disk files used by Firefox 17.0.1 
+    showed modified timestamps after a private browsing session. Even though
+    information about the user's activities may not be directly accessible,
+    evidence that a private browsing session took place can help forensic
+    investigators determine why browsing history cannot easily be located on a
+    suspect's machine, especially when analysis of the computer's memory is not
+    possible.\cite{ohana13} Firefox 19.0 fixed this problem.\cite{satvat13}
 
     \subsection{Google Chrome}
-    One 2013 study stated that it was more difficult to retrieve private
-	browsing artifacts from Chrome's incognito mode than Firefox or Internet
-	Explorer.\cite{said11} 
-
+    One 2011 study stated that it was more difficult to retrieve private
+    browsing artifacts from Chrome's incognito mode (using Chrome 7.0.517.41) 
+    than Firefox or Internet Explorer. That study found that, as in Firefox 
+    3.6.11, browsing history and search engine keywords could be accessed in 
+    the computer's memory after the incognito session terminated. However, it 
+    found no on-disk artifacts. Only physical memory contained these artifacts, 
+    as the pagefile revealed no traces of the websites visited or searches 
+    performed using incognito mode.\cite{said11}
+    
+    Chrome 23.0.1271.95, on the other hand, modified timestamps for many files
+    when terminating incognito sessions. As with Chrome 7.0.517.41, artifacts 
+    related to the user's browsing activities were limited to the computer's 
+    memory. However, the pagefile did reveal evidence of a file downloaded
+    during an incognito browsing session.\cite{ohana13} The timestamp artifacts
+    were still present as of version 25.0.1364.97.\cite{satvat13}
+    
     \subsection{Internet Explorer}
     Internet Explorer leaves the most artifacts behind when its InPrivate
     Browsing mode terminates.\cite{ohana13} Internet Explorer 8.0.6001.18702
-	continued to cache web pages on the hard drive during an InPrivate
-	Browsing session, but these files were deleted once the browser window was
-	closed. This means that fragments of these files---and thus a record of the
-	user's browsing history---could be discovered by analyzing the free and
-	slack space of the hard drive.\cite{said11}
+    continued to cache web pages on the hard drive during an InPrivate
+    Browsing session, but these files were deleted once the browser window was
+    closed. This means that fragments of these files---and thus a record of the
+    user's browsing history---could be discovered by analyzing the free and
+    slack space of the hard drive.\cite{said11} Login information for email
+    accounts and full image artifacts were discovered on the machine after an 
+    InPrivate Browsing session using Internet Explorer 8.0 as recently as 2013.
+    \cite{ohana13} Researchers recently determined that Internet Explorer log 
+    files no longer contained evidence of browsing history as of version 
+    10.0.9200.16521. This had been an issue in previous versions of the 
+    browser.\cite{satvat13}
 
     \subsection{Forensic Software}
-
+    
 
   \section{Conclusion}
   With all the ways in which private browsing modes can leak information, it
@@ -213,12 +237,12 @@
 
   \singlespacing
   \begin{thebibliography}{9}
-	\bibitem{aggarwal10}
-	  Aggarwal, Gaurav, Elie Bursztein, Collin Jackson, and Dan Boneh.
-	  ``An Analysis of Private Browsing Modes in Modern Browsers.''
-	  Proceedings of the 19th USENIX Security Symposium,  Wardman Park Marriott
-	  Hotel, Washington, D.C. 11-13 Aug. 2013. Web. 8 Dec. 2013. $<$
-	  \url{http://crypto.stanford.edu/~dabo/pubs/papers/privatebrowsing.pdf}$>$
+    \bibitem{aggarwal10}
+      Aggarwal, Gaurav, Elie Bursztein, Collin Jackson, and Dan Boneh.
+      ``An Analysis of Private Browsing Modes in Modern Browsers.''
+      Proceedings of the 19th USENIX Security Symposium,  Wardman Park Marriott
+      Hotel, Washington, D.C. 11-13 Aug. 2013. Web. 8 Dec. 2013. $<$
+      \url{http://crypto.stanford.edu/~dabo/pubs/papers/privatebrowsing.pdf}$>$
     \bibitem{google13}
       ``Chrome Browser.'' \emph{Chrome}. Google, 18 Nov. 2013. Web. 10 Dec. 
       2013. $<$\url{http://www.google.com/intl/en/chrome/browser/
@@ -246,10 +270,10 @@
       8th International Workshop on Data Privacy Management (DPM '13), Royal 
       Holloway, University of London, Egham, UK. 12-13 Sept. 2013. Web. 9 Dec.
       2013. $<$\url{http://homepages.cs.ncl.ac.uk/feng.hao/files/DPM13.pdf}$>$ 
-	\bibitem{tor13}
+    \bibitem{tor13}
       ``Tor Project: Overview.'' \emph{Tor}. Tor, 7 Dec. 2013. Web. 10 Dec. 
       2013. $<$\url{http://www.torproject.org/about/overview.html.en}$>$. 
-	\bibitem{verdi13}
+    \bibitem{verdi13}
       Verdi, Michael et al. ``Private Browsing.'' \emph{Mozilla Support}. 
       Mozilla Foundation, 29 Mar. 2013. Web. 10 Dec. 2013. 
       $<$\url{http://support.mozilla.org/en-US/kb/private-browsing-browse-web-
