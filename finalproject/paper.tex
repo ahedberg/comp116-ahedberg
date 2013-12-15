@@ -176,12 +176,28 @@
     files no longer contained evidence of browsing history as of version 
     10.0.9200.16521. This had been an issue in previous versions of the 
     browser.\cite{satvat13}    
-
-    \subsection{Browser Extensions}
-    The previously discussed private browsing artifacts were all a result of
-	normal browser behavior. However, browser extensions can be used to
-	determine the activities in which a user has been involved during a private
-	browsing session, as well. 
+	
+	\subsection{Proof of Concept: Parsing SQLite Databases and Browser Memory}
+	% find paper that had the thing about no last visited date and cite
+	As an example of the persistence of some of these private browsing 
+	shortcomings, two Python scripts were written to accompany this paper.
+	The first parses the SQLite databases of Mozilla Firefox to look for 
+	private browsing artifacts. There are two built-in artifact searches. It 
+	will print any cookies created within the last hour; if private browsing is
+	currently in use, some cookies may show up here before being removed upon
+	browser termination. Additionally, URLs that have a nonzero access count
+	but an unspecified last visit time will be printed. It cannot be easily
+	determined when these websites were visited, but it is likely that it was
+	during a private browsing session. Upon manual review of the URLs retrieved 
+	from this database, URLs visited more recently during a private browsing 
+	session appeared at the bottom of the list. The 
+	\href{https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager}
+	{SQLite Manager} extension for Firefox was used to discover these possible
+	artifact sources before a programmatic solution was implemented.
+	
+	The second script retrieves the contents of the memory segments associated
+	with a running Firefox or Chrome process.
+	%Finish this
 
   \section{Conclusion}
   With all the ways in which private browsing modes can leak information, it
@@ -214,9 +230,12 @@
   have been found, is cleared when a computer is powered down. Shutting down
   the computer after a private browsing session can reduce or eliminate these
   artifacts. Hard drive artifacts, however, are nearly impossible to eradicate.
-  The moral of the story is that private browsing is nothing more than a nice
-  illusion useful for fooling the computer-illiterate. At the end of the day,
-  private browsing really isn't that private at all.
+  Even if the files whose timestamps were updated upon termination of a 
+  private browsing session could be deleted without affecting the browser, 
+  their fragments would still remain on the hard drive. The moral of the story 
+  is that private browsing is nothing more than a nice illusion useful for 
+  fooling the computer-illiterate. At the end of the day, private browsing 
+  really isn't that private at all.
 
   \singlespacing
   \begin{thebibliography}{9}

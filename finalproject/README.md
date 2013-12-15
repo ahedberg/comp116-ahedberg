@@ -9,10 +9,16 @@ The following files are included with this project:
 * paper.tex - the paper in LaTeX markup. If the commits for paper.pdf and
   paper.tex are the same, they are probably equivalent
 * read_browser_databases.py - reads the SQLite databases associated with
-  Mozilla Firefox (Google Chrome to be added). Choice of pre-defined
-  searches that may return a few browser artifacts or a rudimentary
-  interactive mode. Uses Python 3.3.3.
-* read_memory.py - attempts to read the in-memory SQLite databases
-  associated with Mozilla Firefox (Google Chrome to be added). Currently
-  achieves a memory map of the process and freezes spectacularly. Uses
-  Python 2.7.6.
+  Mozilla Firefox. Choice of pre-defined searches that may return a few 
+  browser artifacts or a rudimentary interactive mode. Uses Python 3.3.3. To 
+  be added:
+  * Ability to view columns for tables and construct dynamic queries (using
+  bind variables to prevent SQL injection attacks)
+  * Google Chrome support
+* read_memory.py - reads strings stored in memory of Mozilla Firefox and Google
+  Chrome processes. Prints strings to terminal window. Uses Python 2.7.6. To 
+  be added:
+  * Writing all strings to a log file and additionally printing interesting
+  strings (such as those containing URLs) to terminal window
+  * Access in-memory SQLite database
+  

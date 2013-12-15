@@ -8,7 +8,7 @@
 # Note: runs using Python 2.7.6. WinAppDbg is not compatible with Python 3.3.3,
 #       and it has no intention of becoming compatible with it.
 
-from winappdbg import System, Process, CrashDump, HexDump
+from winappdbg import System, Process, HexDump
 import os
 import sys
 
@@ -23,21 +23,18 @@ if (version.major, version.minor, version.micro) != (2, 7, 6):
     exit(1)
 
 system = System()
-#executables = []
-#executables.append("firefox.exe")
-#executables.append("chrome.exe")
-
 
 for task in system:
     task_name = task.get_filename()
     if task_name is None:
         continue
-    if task_name.find("firefox.exe") != -1:
-        process = Process(task.get_pid())
-        #memory_map = process.get_memory_map()
-		
-		# Convert this to logging of some sort
-		# And only print URL-like things?
-        for address, size, data in process.strings():
-            print HexDump.address(address), HexDump.printable(data)
+    if (task_name.find("firefox.exe") != -1) or (task_name.find("chrome.exe") != -1):
+        process = Process(task.get_pid())   
+        filename = "{executable}_output.txt".format(executable=task_name)
+        with open(filename, "w") as f:
+            for address, size, data in process.strings():
+                tuple = (HexDump.address(address), HexDump.printable(data))
+                f.write(str(tuple))
+                if tuple[1].startswith((r"http://", r"https://")):
+                    print tuple
     
