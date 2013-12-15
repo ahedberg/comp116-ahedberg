@@ -11,7 +11,8 @@ The following files are included with this project:
 * read_browser_databases.py - reads the SQLite databases associated with
   Mozilla Firefox (Google Chrome to be added). Choice of pre-defined
   searches that may return a few browser artifacts or a rudimentary
-  interactive mode
+  interactive mode. Uses Python 3.3.3.
 * read_memory.py - attempts to read the in-memory SQLite databases
   associated with Mozilla Firefox (Google Chrome to be added). Currently
-  achieves a memory map of the process and freezes spectacularly.
+  achieves a memory map of the process and freezes spectacularly. Uses
+  Python 2.7.6.

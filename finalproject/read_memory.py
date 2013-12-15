@@ -1,4 +1,5 @@
 # read_memory
+# read_memory
 
 # Reads memory maps of Mozilla Firefox (while they are
 # running) to look for private browsing artifacts
@@ -33,21 +34,10 @@ for task in system:
         continue
     if task_name.find("firefox.exe") != -1:
         process = Process(task.get_pid())
-        memory_map = process.get_memory_map()
-        list = process.take_memory_snapshot()
-        for item in list:
-            print item.filename, item.content
-        
-        bits = process.get_bits()
-        # for mbi in memory_map:
-            # base_address = mbi.BaseAddress
-            # region_size  = mbi.RegionSize
-            # data = None
-            # if mbi.has_content():
-                # data = process.read(base_address, region_size)
-                # print data
-            
-        #print CrashDump.dump_memory_map(memory_map)
-        #for address, size, data in process.strings():
-            #print HexDump.address(address), data
+        #memory_map = process.get_memory_map()
+		
+		# Convert this to logging of some sort
+		# And only print URL-like things?
+        for address, size, data in process.strings():
+            print HexDump.address(address), HexDump.printable(data)
     
