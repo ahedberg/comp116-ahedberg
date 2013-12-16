@@ -11,7 +11,6 @@
 \doublespacing
 
 \begin{document}
-  \singlespacing
   \title{The Privacy of Private Browsing}
   \author{Ashley Hedberg\thanks{\emph{Mentor:} Ming Chow, Tufts University} \\
   \href{mailto:ashley.hedberg@tufts.edu}{ashley.hedberg@tufts.edu}}
@@ -26,13 +25,13 @@
   behind when a private browsing session terminates. Several researchers have 
   already demonstrated methods of detecting this information. These include the
   analysis of the hard drive, memory, and the pagefile on Windows machines.
-  The existence of private browsing artifacts on a user’s machine raises many 
+  The existence of private browsing artifacts on a user's machine raises many 
   questions: how much privacy do web browser developers actually aim to provide
   with ``private browsing'' modes? Are these goals accurately conveyed to the 
   end user? And, if the user’s browsing session can be reconstructed from these 
   artifacts, how much information would digital forensics professionals be 
   able to gain? This paper seeks to answer these questions and to prove that 
-  such artifactscan be used to determine, at least in part, what a user was 
+  such artifacts can be used to determine, at least in part, what a user was 
   doing during his or her ``private browsing'' session---thereby rendering it 
   not very private at all.
   \end{abstract}
@@ -127,7 +126,7 @@
     memory when private browsing is in use, and their residual data could be 
     detected, as well.\cite{satvat13}
 
-    \subsection{Firefox}
+    \subsection{Mozilla Firefox}
     In 2011, researchers discovered that Firefox 3.6.11 stored browser history
     and search engine keywords in the computer's physical memory and that this
     information could be accessed after the browsing session was terminated.
@@ -162,7 +161,7 @@
     during an incognito browsing session.\cite{ohana13} The timestamp artifacts
     were still present as of version 25.0.1364.97.\cite{satvat13}
     
-    \subsection{Internet Explorer}
+    \subsection{Microsoft Internet Explorer}
     Internet Explorer leaves the most artifacts behind when its InPrivate
     Browsing mode terminates.\cite{ohana13} Internet Explorer 8.0.6001.18702
     continued to cache web pages on the hard drive during an InPrivate
