@@ -40,6 +40,6 @@ for task in system:
 			# All strings are logged, while URLs are printed to terminal
             for address, size, data in process.strings():
                 tuple = (HexDump.address(address), HexDump.printable(data))
-                f.write(str(tuple))
-                if tuple[1].startswith((r"http://", r"https://")):
-                    print tuple
+                f.write(tuple[0] + "\t" + tuple[1] + "\n")
+                if tuple[1].startswith((r"http://", r"https://", r"HTTP-memory-only")):
+                    print tuple[0], "\t", tuple[1]
