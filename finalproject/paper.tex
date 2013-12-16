@@ -178,7 +178,6 @@
     browser.\cite{satvat13}    
 	
 	\subsection{Proof of Concept: Parsing SQLite Databases and Browser Memory}
-	% find paper that had the thing about no last visited date and cite
 	As an example of the persistence of some of these private browsing 
 	shortcomings, two Python scripts were written to accompany this paper.
 	The first parses the SQLite databases of Mozilla Firefox to look for 
@@ -196,8 +195,12 @@
 	artifact sources before a programmatic solution was implemented.
 	
 	The second script retrieves the contents of the memory segments associated
-	with a running Firefox or Chrome process.
-	%Finish this
+	with a running Firefox or Chrome process. String literals in the browser's
+	memory are then logged to an output file, separated by browser.
+	Additionally, potentially interesting memory contents (currently URLs, but
+	could easily be modified to include other items of interest) are printed to
+	the terminal. This was accomplished using the 
+	\href{http://winappdbg.sourceforge.net/}{WinAppDbg} module.
 
   \section{Conclusion}
   With all the ways in which private browsing modes can leak information, it
